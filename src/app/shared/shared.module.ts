@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -19,5 +19,6 @@ import { LoaderComponent } from './components/loader/loader.component';
     FooterComponent,
     LoaderComponent,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SharedModule {}
