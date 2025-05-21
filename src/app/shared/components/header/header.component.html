@@ -1,14 +1,48 @@
-<nav class="navbar">
-    <div class="logo">Legacy</div>
-    <ul class="nav-links">
-      <li><a routerLink="#"> Products </a></li>
-      <li><a routerLink="#"> Solutions </a></li>
-      <li><a routerLink="#">Platforms </a></li>
-      <li><a routerLink="#"> Pricing</a></li>
-      <li><a routerLink="#"> Blog </a></li>
-    </ul>
-    <div class="auth-buttons">
-      <button class="btn-primary">Jazal</button>
-    </div>
-  </nav>
+<header class="header">
+  <div class="logo">Legacy</div>
   
+  <div class="right-side">
+    <a class="book-now" href="#">BOOK NOW</a>
+    <div class="menu-icon" (click)="toggleMenu()">
+      <div [class.active]="menuOpen"></div>
+      <div [class.active]="menuOpen"></div>
+      <div [class.active]="menuOpen"></div>
+    </div>
+  </div>
+</header>
+
+<!-- Side Menu Overlay -->
+<div class="side-menu" [class.open]="menuOpen">
+  <div class="side-menu-content">
+    <div class="menu-columns">
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Investors</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Contact us</a></li>
+
+        <li class="has-dropdown" (click)="toggleDropdown($event)">
+          <a href="#">Our Developments</a>
+          <ul class="dropdown">
+            <li><a href="#">Jazal</a></li>
+          </ul>
+        </li>
+
+      </ul>
+      <div class="contact-info">
+        <h2>CONTACT US</h2>
+        <p><strong>Legacy</strong><br>
+        20 Aisha Al Taimoria Street – Garden City – Beside Four Seasons – Nile Plaza<br>
+        Hotel 1st floor, No.(5)<br>
+        Phone: +202 27929892 / +202 27929893<br>
+        Fax: +202 27951268</p>
+        <div class="buttons">
+          <button>VISIT OUR SALES CENTER</button>
+          <button>BOOK NOW</button>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
