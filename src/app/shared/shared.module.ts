@@ -5,6 +5,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { JazalCtaComponent } from './components/jazal-cta/jazal-cta.component';
+import { AboutUsCtaComponent } from './components/about-us-cta/about-us-cta.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { JazalCtaComponent } from './components/jazal-cta/jazal-cta.component';
     FooterComponent,
     LoaderComponent,
     JazalCtaComponent,
+    AboutUsCtaComponent,
   ],
   imports: [CommonModule],
   exports: [
