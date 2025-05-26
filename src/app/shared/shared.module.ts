@@ -6,6 +6,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { JazalCtaComponent } from './components/jazal-cta/jazal-cta.component';
 import { AboutUsCtaComponent } from './components/about-us-cta/about-us-cta.component';
+import { HeroComponent } from './components/hero/hero.component';
+
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { AboutUsCtaComponent } from './components/about-us-cta/about-us-cta.comp
     LoaderComponent,
     JazalCtaComponent,
     AboutUsCtaComponent,
+    HeroComponent,
+
   ],
   imports: [CommonModule],
   exports: [
@@ -23,6 +27,7 @@ import { AboutUsCtaComponent } from './components/about-us-cta/about-us-cta.comp
     FooterComponent,
     LoaderComponent,
     JazalCtaComponent,
+    HeroComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
