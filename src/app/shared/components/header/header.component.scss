@@ -27,7 +27,8 @@
     }
   }
 
-  .logo-icon, .logo-text {
+  .logo-icon,
+  .logo-text {
     position: absolute;
     left: 0;
     opacity: 0;
@@ -59,15 +60,15 @@
         background: currentColor;
         border-radius: 1px;
         transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-       
+
         &.active:nth-child(1) {
           transform: rotate(45deg) translateY(8px);
         }
-       
+
         &.active:nth-child(2) {
           opacity: 0;
         }
-       
+
         &.active:nth-child(3) {
           transform: rotate(-45deg) translateY(-8px);
         }
@@ -101,7 +102,8 @@ body.menu-open {
   .header {
     color: white;
 
-    .logo-icon, .logo-text {
+    .logo-icon,
+    .logo-text {
       filter: brightness(0) invert(1);
     }
   }
@@ -169,7 +171,7 @@ body.menu-open {
             position: relative;
 
             &::after {
-              content: '';
+              content: "";
               position: absolute;
               left: 0;
               bottom: -4px;

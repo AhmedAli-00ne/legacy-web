@@ -5,11 +5,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
-  selector: 'app-about-us-cta',
-  templateUrl: './about-us-cta.component.html',
-  styleUrls: ['./about-us-cta.component.scss']
+  selector: 'app-about-cta',
+  templateUrl: './about-cta.component.html',
+  styleUrls: ['./about-cta.component.scss'],
 })
-export class AboutUsCtaComponent implements AfterViewInit {
+export class AboutCtaComponent implements AfterViewInit {
   @ViewChild('container', { static: true }) container!: ElementRef;
 
   ngAfterViewInit(): void {
@@ -26,8 +26,8 @@ export class AboutUsCtaComponent implements AfterViewInit {
         start: 'top 80%',
         end: 'bottom 20%',
         toggleActions: 'restart none none reverse',
-        markers: false // set to true for debugging
-      }
+        markers: false, // set to true for debugging
+      },
     });
   }
 }

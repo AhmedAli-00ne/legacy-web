@@ -5,7 +5,7 @@ import {
   AfterViewInit,
   HostListener,
   ElementRef,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import gsap from 'gsap';
 import { CustomEase } from 'gsap/CustomEase';
@@ -13,9 +13,9 @@ import { CustomEase } from 'gsap/CustomEase';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnDestroy, AfterViewInit {
+export class HeaderComponent implements AfterViewInit, OnDestroy {
   menuOpen = false;
   private clickListener: () => void;
   private firstSectionHeight = 0;
@@ -40,18 +40,21 @@ export class HeaderComponent implements OnDestroy, AfterViewInit {
     }
 
     if (this.sideMenu) {
-      this.sideMenu.nativeElement.addEventListener('transitionend', (event: TransitionEvent) => {
-        if (this.menuOpen && event.propertyName === 'transform') {
-          this.handleSideMenuTransitionEnd();
+      this.sideMenu.nativeElement.addEventListener(
+        'transitionend',
+        (event: TransitionEvent) => {
+          if (this.menuOpen && event.propertyName === 'transform') {
+            this.handleSideMenuTransitionEnd();
+          }
         }
-      });
+      );
     }
   }
 
   private initAnimations(): void {
     // Create custom easing curves
-    CustomEase.create("logoReveal", "M0,0 C0.4,0 0.2,1 1,1");
-    CustomEase.create("menuSlide", "M0,0 C0.1,0 0.2,1 1,1");
+    CustomEase.create('logoReveal', 'M0,0 C0.4,0 0.2,1 1,1');
+    CustomEase.create('menuSlide', 'M0,0 C0.1,0 0.2,1 1,1');
 
     // Initialize timeline
     this.animationTimeline = gsap.timeline({ paused: true });
@@ -62,30 +65,42 @@ export class HeaderComponent implements OnDestroy, AfterViewInit {
         opacity: 0,
         y: 40,
         rotationX: 15,
-        transformOrigin: "center center",
-        transformStyle: "preserve-3d"
+        transformOrigin: 'center center',
+        transformStyle: 'preserve-3d',
       })
-      .to('.logo-icon', {
-        opacity: 1,
-        y: 0,
-        rotationX: 0,
-        duration: 0.8,
-        ease: "logoReveal"
-      }, 0.1)
-      .to('.logo-text', {
-        opacity: 1,
-        y: 0,
-        rotationX: 0,
-        duration: 0.8,
-        ease: "logoReveal"
-      }, 0.2)
-      .to(['.logo-icon', '.logo-text'], {
-        scale: 1.05,
-        duration: 0.2,
-        repeat: 1,
-        yoyo: true,
-        ease: "power1.inOut"
-      }, "+=0.3");
+      .to(
+        '.logo-icon',
+        {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          duration: 0.8,
+          ease: 'logoReveal',
+        },
+        0.1
+      )
+      .to(
+        '.logo-text',
+        {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          duration: 0.8,
+          ease: 'logoReveal',
+        },
+        0.2
+      )
+      .to(
+        ['.logo-icon', '.logo-text'],
+        {
+          scale: 1.05,
+          duration: 0.2,
+          repeat: 1,
+          yoyo: true,
+          ease: 'power1.inOut',
+        },
+        '+=0.3'
+      );
 
     // Play animations after short delay
     setTimeout(() => this.animationTimeline.play(), 100);
@@ -119,7 +134,8 @@ export class HeaderComponent implements OnDestroy, AfterViewInit {
   }
 
   private closeMenuAnimation(): void {
-    const content = this.sideMenu.nativeElement.querySelector('.side-menu-content');
+    const content =
+      this.sideMenu.nativeElement.querySelector('.side-menu-content');
 
     // Immediately update header classes before animation starts
     this.renderer.removeClass(this.header, 'menu-opened');
@@ -129,33 +145,35 @@ export class HeaderComponent implements OnDestroy, AfterViewInit {
       opacity: 0,
       y: 20,
       duration: 0.3,
-      ease: "power1.in",
+      ease: 'power1.in',
       onComplete: () => {
         document.body.classList.remove('menu-open');
         this.renderer.removeClass(this.sideMenu.nativeElement, 'open');
-      }
+      },
     });
   }
   private handleSideMenuTransitionEnd(): void {
     if (this.menuOpen) {
-      const content = this.sideMenu.nativeElement.querySelector('.side-menu-content');
+      const content =
+        this.sideMenu.nativeElement.querySelector('.side-menu-content');
 
-      gsap.fromTo(content,
+      gsap.fromTo(
+        content,
         {
           opacity: 0,
           y: 40,
-          rotationX: 5
+          rotationX: 5,
         },
         {
           opacity: 1,
           y: 0,
           rotationX: 0,
           duration: 0.6,
-          ease: "menuSlide",
+          ease: 'menuSlide',
           onStart: () => {
             this.renderer.addClass(this.header, 'menu-opened');
             this.renderer.addClass(this.header, 'scrolled');
-          }
+          },
         }
       );
     }
@@ -184,7 +202,7 @@ export class HeaderComponent implements OnDestroy, AfterViewInit {
     const target = event.currentTarget as HTMLElement;
     const allDropdowns = document.querySelectorAll('.has-dropdown.open');
 
-    allDropdowns.forEach(el => {
+    allDropdowns.forEach((el) => {
       if (el !== target) el.classList.remove('open');
     });
 
@@ -193,7 +211,7 @@ export class HeaderComponent implements OnDestroy, AfterViewInit {
 
   closeAllDropdowns(): void {
     const dropdowns = document.querySelectorAll('.has-dropdown.open');
-    dropdowns.forEach(el => el.classList.remove('open'));
+    dropdowns.forEach((el) => el.classList.remove('open'));
   }
 
   ngOnDestroy(): void {

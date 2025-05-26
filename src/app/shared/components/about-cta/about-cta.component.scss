@@ -20,7 +20,8 @@
     gap: 4rem;
   }
 
-  .left, .right {
+  .left,
+  .right {
     flex: 1;
     display: flex;
     flex-direction: column;
