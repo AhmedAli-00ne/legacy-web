@@ -11,10 +11,19 @@ gsap.registerPlugin(ScrollTrigger);
 })
 export class AboutCtaComponent implements AfterViewInit {
   @ViewChild('container', { static: true }) container!: ElementRef;
+  @ViewChild('scrambleBtn1') btn1!: ElementRef;
+  @ViewChild('scrambleBtn2') btn2!: ElementRef;
 
   ngAfterViewInit(): void {
     const elements = this.container.nativeElement.querySelectorAll('.animate');
-
+    this.initScramble(
+      this.btn1.nativeElement.querySelector('span'),
+      'LEARN MORE'
+    );
+    this.initScramble(
+      this.btn2.nativeElement.querySelector('span'),
+      'DOWNLOAD BROCHURE'
+    );
     gsap.from(elements, {
       opacity: 0,
       y: 60,
@@ -29,5 +38,29 @@ export class AboutCtaComponent implements AfterViewInit {
         markers: false, // set to true for debugging
       },
     });
+  }
+  initScramble(el: HTMLElement, text: string) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*';
+    let interval: any;
+
+    const scramble = () => {
+      let iterations = 0;
+      clearInterval(interval);
+
+      interval = setInterval(() => {
+        el.innerText = el.innerText
+          .split('')
+          .map((char, i) => {
+            if (i < iterations) return text[i];
+            return chars[Math.floor(Math.random() * chars.length)];
+          })
+          .join('');
+
+        if (iterations >= text.length) clearInterval(interval);
+        iterations += 1 / 2;
+      }, 30);
+    };
+
+    el.parentElement?.addEventListener('mouseenter', scramble);
   }
 }
