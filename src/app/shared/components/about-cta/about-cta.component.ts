@@ -2,7 +2,7 @@ import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
+//gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-about-cta',
@@ -24,21 +24,33 @@ export class AboutCtaComponent implements AfterViewInit {
       this.btn2.nativeElement.querySelector('span'),
       'DOWNLOAD BROCHURE'
     );
-    gsap.from(elements, {
-      opacity: 0,
-      y: 60,
-      duration: 1,
-      stagger: 0.3,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: this.container.nativeElement,
-        start: 'top 80%',
-        end: 'bottom 20%',
-        toggleActions: 'restart none none reverse',
-        markers: false, // set to true for debugging
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            gsap.fromTo(
+              elements,
+              { opacity: 0, y: 60 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.3,
+                ease: 'power3.out',
+              }
+            );
+          }
+        });
       },
-    });
+      {
+        root: null,
+        threshold: 1,
+      }
+    );
+
+    observer.observe(this.container.nativeElement);
   }
+
   initScramble(el: HTMLElement, text: string) {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*';
     let interval: any;
