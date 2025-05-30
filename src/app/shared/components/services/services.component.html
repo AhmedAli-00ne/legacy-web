@@ -1,0 +1,28 @@
+<section class="services-section">
+  <div class="services-left">
+    <h2>What We Offer</h2>
+    <p>
+      We offer integrated real estate solutions, from design and development to
+      personalized sales services.
+    </p>
+    <button class="btn primary" #scrambleBtn1>
+      <span>LEARN MORE</span>
+    </button>
+  </div>
+
+  <div class="services-right">
+    <div class="card-grid">
+      <div
+        class="service-card"
+        *ngFor="let service of services; let i = index"
+        [class.bottom]="i >= 2"
+        #container
+      >
+        <div class="icon"><img [src]="service.icon" alt="icon" /></div>
+        <h3>{{ service.title }}</h3>
+        <p class="description">{{ service.description }}</p>
+      </div>
+      <div class="divider" #dividerLine></div>
+    </div>
+  </div>
+</section>
