@@ -1,0 +1,47 @@
+<section class="legacy-about">
+  <div class="hero-image">
+    <div class="nav-tabs">
+      <div
+        *ngFor="let tab of tabs"
+        (click)="setActiveTab(tab)"
+        [class.active]="tab === activeTab"
+        class="tab"
+      >
+        {{ tab }}
+        <span class="underline" *ngIf="tab === activeTab"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <ng-container [ngSwitch]="activeTab">
+      <div *ngSwitchCase="'About'">
+        <h2>About Legacy Estates</h2>
+        <h4>Our Story</h4>
+        <p>
+         Rooted in heritage and guided by purpose, Legacy Estates crafts more than homes — it creates timeless 
+          sanctuaries where families continue their stories. Every project is shaped by excellence and designed for 
+          generations to come.
+        </p>
+
+        <h4>Who We Are</h4>
+        <p>
+          Legacy Estates is the luxury real estate arm of Al Rowad Investment Group, a visionary conglomerate with 
+          deep roots in education, automotive, and real estate. Building on a legacy of nearly a decade in thoughtful 
+          community development, we elevate the art of living through exceptional design and unmatched quality. 
+        </p>
+      </div>
+
+      <div *ngSwitchCase="'Mission & Vision'">
+        <h2>Vision & Mission</h2>
+        <p><strong>Our Vision:</strong> To redefine luxury living by blending architectural excellence with mindful spaces.</p>
+        <p><strong>Our Mission:</strong> To create communities that endure — places that inspire, nurture, and grow with every generation.</p>
+      </div>
+
+      <div *ngSwitchDefault>
+        <h2>{{ activeTab }}</h2>
+        <p>Content for {{ activeTab }} coming soon...</p>
+      </div>
+    </ng-container>
+  </div>
+</section>

@@ -5,12 +5,14 @@
   height: 80px;
   z-index: 999;
   background: transparent;
-  color: #d4af37;
+  color: white ;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   justify-content: space-between;
   padding: 20px 40px;
   will-change: transform, background-color;
   transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  
 
   .logo {
     font-size: 28px;
@@ -77,37 +79,25 @@
   }
 
   &.scrolled {
-    color: white;
-    // background-color: rgba(0, 0, 0, 0.9);
-    // backdrop-filter: blur(10px);
-    // .logo {
-    //   opacity: 0;
-    //   transform: translateY(-20px); /* Optional slight upward fade */
-    //   pointer-events: none; /* Makes it non-interactive when hidden */
-    // }
-    .book-now {
-      color: white;
-    }
+    color: black;
   }
 
-  &.menu-opened {
-    // background-color: #121212;
-    color: white;
-  }
 }
-
-body.menu-open {
-  overflow: hidden;
-
-  .header {
-    color: white;
-
-    .logo-icon,
-    .logo-text {
-      filter: brightness(0) invert(1);
-    }
-  }
+.header.menu-open{
+  color: white;
 }
+// body.menu-open {
+//   overflow: hidden;
+
+//   .header {
+//     color: white;
+
+//     .logo-icon,
+//     .logo-text {
+//       filter: brightness(0) invert(1);
+//     }
+//   }
+// }
 
 .side-menu {
   position: fixed;
