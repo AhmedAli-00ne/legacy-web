@@ -22,12 +22,7 @@ export class HomeComponent implements AfterViewInit {
   private sectionElements: HTMLElement[] = [];
   private currentIndex = 0;
   private isScrolling = false;
-  @HostListener('window:wheel', ['$event'])
-  @HostListener('window:touchmove', ['$event'])
-  @HostListener('window:keydown', ['$event'])
-  preventDefaultScroll(event: Event) {
-    event.preventDefault(); // block default scroll
-  }
+
   constructor(private cdr: ChangeDetectorRef) {}
   ngAfterViewInit(): void {
     this.sectionElements = this.sections.map((el) => el.nativeElement);
@@ -48,22 +43,11 @@ export class HomeComponent implements AfterViewInit {
 
     this.scrollToSection(this.currentIndex);
 
-    setTimeout(() => (this.isScrolling = false), 800); // throttle scroll
+    setTimeout(() => (this.isScrolling = false), 800);
   }
 
   scrollToSection(index: number) {
     const target = this.sectionElements[index];
-
-    // Scroll using native smooth scroll
     target.scrollIntoView({ behavior: 'smooth' });
-
-    // Refresh ScrollTrigger after scroll finishes (matches animation time)
-    setTimeout(() => {
-      // Run refresh twice to be safe
-      requestAnimationFrame(() => {
-        ScrollTrigger.refresh();
-        setTimeout(() => ScrollTrigger.refresh(), 100); // second refresh to catch layout shifts
-      });
-    }, 800); // match scroll duration (e.g. 800ms)
   }
 }

@@ -15,6 +15,7 @@ export class AboutCtaComponent implements AfterViewInit {
   @ViewChild('scrambleBtn2') btn2!: ElementRef;
 
   ngAfterViewInit(): void {
+    console.log('ngAfterViewInit2222');
     const elements = this.container.nativeElement.querySelectorAll('.animate');
     this.initScramble(
       this.btn1.nativeElement.querySelector('span'),
@@ -28,17 +29,21 @@ export class AboutCtaComponent implements AfterViewInit {
       (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            gsap.fromTo(
-              elements,
-              { opacity: 0, y: 60 },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                stagger: 0.3,
-                ease: 'power3.out',
-              }
-            );
+            gsap.to(elements, {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              stagger: 0.3,
+              ease: 'power3.out',
+            });
+          } else {
+            gsap.to(elements, {
+              opacity: 0,
+              y: 60,
+              duration: 1,
+              stagger: 0.3,
+              ease: 'power3.out',
+            });
           }
         });
       },

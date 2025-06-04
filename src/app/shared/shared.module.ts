@@ -9,6 +9,9 @@ import { JazalCtaComponent } from './components/jazal-cta/jazal-cta.component';
 import { AboutCtaComponent } from './components/about-cta/about-cta.component';
 import { LegacyAboutComponent } from './components/about/about.component';
 import { AboutUsCtaComponent } from './components/about-us-cta/about-us-cta.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { ServicesComponent } from './components/services/services.component';
+
 
 @NgModule({
   declarations: [
@@ -18,9 +21,14 @@ import { AboutUsCtaComponent } from './components/about-us-cta/about-us-cta.comp
     HeroComponent,
     JazalCtaComponent,
     AboutCtaComponent,
+
     LegacyAboutComponent,
     AboutUsCtaComponent,
     AboutCtaComponent,
+
+    ProjectsComponent,
+    ServicesComponent,
+
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -30,8 +38,13 @@ import { AboutUsCtaComponent } from './components/about-us-cta/about-us-cta.comp
     HeroComponent,
     JazalCtaComponent,
     AboutCtaComponent,
+
     LegacyAboutComponent,
     AboutUsCtaComponent,
+
+    ProjectsComponent,
+    ServicesComponent,
+
   ],
 })
 export class SharedModule {}
