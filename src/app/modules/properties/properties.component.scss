@@ -1,0 +1,211 @@
+/* Import fonts - this usually goes in your global styles.css or index.html */
+/* @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;700&display=swap'); */
+
+/* Base styles for the body - usually goes in src/styles.css or index.html */
+body {
+    margin: 0;
+    overflow: hidden; /* Prevent scrollbars if blobs move out of view */
+    background-color: #1a1a2e; /* Dark background for contrast, though .properties-container will cover it */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.properties-container {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display: flex;
+    flex-direction: column; /* <-- Add this */
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    perspective: 1000px;
+    box-sizing: border-box;
+}
+
+.blob {
+    position: absolute; /* Allows precise positioning */
+    width: 200px;
+    height: 200px;
+    
+    /* Styles to make them look like soft blobs */
+    border-radius: 50%;
+    filter: blur(50px); /* Creates a soft, glowy effect */
+    // opacity: 0.7;
+    will-change: transform, filter, opacity; /* Optimize for animation */
+}
+
+.blob-1 {
+    background: linear-gradient(135deg, #ff6f61, #e05206); /* Example color */
+    width: 250px;
+    height: 250px;
+    top: 10%; /* Adjusted initial placement */
+    left: 5%;
+}
+
+.blob-2 {
+    background: linear-gradient(45deg, #fbfcfd, #d5b5f0); /* Example color */
+    width: 300px;
+    height: 300px;
+    bottom: 10%; /* Adjusted initial placement */
+    right: 5%;
+}
+
+.animated-box {
+    position: absolute;
+    width: 200px; /* Size of the box */
+    height: 200px;
+    background: rgba(173, 216, 230, 0.1); /* Light blue with transparency */
+    border: 1px solid rgba(173, 216, 230, 0.3);
+    box-shadow: 0 0 50px rgba(173, 216, 230, 0.4);
+    z-index: 0; /* Ensures it's behind the content and blobs */
+    transform-style: preserve-3d; /* Enable 3D transformations for children if you were to add faces */
+    will-change: transform, opacity; /* For animation performance */
+    /* top, left, and transform properties are now controlled by GSAP for animation */
+}
+
+.properties-content {
+    position: relative;
+    z-index: 2; /* Ensures content is above blobs and animated box */
+    max-width: 800px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    /* Ensure content doesn't get squished on smaller screens */
+    box-sizing: border-box;
+    margin: 20px; /* Add some margin for smaller screens */
+}
+
+.title {
+  position: relative;
+  font-size: 48px;
+  font-weight: bold;
+  padding: 15px;
+  margin: 0 150px 10px 150px;
+  border-radius: 60%;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #ffffff;
+  overflow: hidden;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background-color: #e05206;
+    border-radius: inherit;
+    z-index: -1;
+    animation: fill-bg 3.5s ease-out forwards;
+  }
+}
+
+@keyframes fill-bg {
+  to {
+    width: 50%;
+  }
+}
+
+
+
+.subtitle {
+    font-size: 26px;
+    color: #b9e0fe;
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 18px;
+    color: #e0e0e0;
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 22px;
+    color: #b9e0fe;
+    margin-top: 30px;
+}
+
+.property-info {
+    background: rgba(255, 255, 255, 0.1);
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: left;
+    color: #f3f3f3;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .title {
+        font-size: 36px;
+    }
+    .subtitle {
+        font-size: 20px;
+    }
+    .description, .section-title, .property-info {
+        font-size: 16px;
+    }
+    .properties-content {
+        padding: 25px;
+    }
+    .blob {
+        width: 150px;
+        height: 150px;
+        filter: blur(30px);
+    }
+    .blob-1 {
+        top: 5%;
+        left: -10%; /* Move further off-screen to avoid blocking content */
+    }
+    .blob-2 {
+        bottom: 5%;
+        right: -10%; /* Move further off-screen */
+    }
+    .animated-box {
+        width: 150px;
+        height: 150px;
+        /* Re-enable display if hidden for small screens */
+        display: block; 
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 28px;
+    }
+    .subtitle {
+        font-size: 18px;
+    }
+    .properties-content {
+        padding: 15px;
+    }
+    .blob {
+        width: 100px;
+        height: 100px;
+        filter: blur(20px);
+    }
+    .blob-1 {
+        top: 2%;
+        left: -20%;
+    }
+    .blob-2 {
+        bottom: 2%;
+        right: -20%;
+    }
+    .animated-box {
+        display: none; /* Hide for very small screens if it obstructs content */
+    }
+}
