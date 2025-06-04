@@ -7,8 +7,11 @@ import { RouterModule } from '@angular/router';
 import { HeroComponent } from './components/hero/hero.component';
 import { JazalCtaComponent } from './components/jazal-cta/jazal-cta.component';
 import { AboutCtaComponent } from './components/about-cta/about-cta.component';
+import { LegacyAboutComponent } from './components/about/about.component';
+import { AboutUsCtaComponent } from './components/about-us-cta/about-us-cta.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ServicesComponent } from './components/services/services.component';
+
 
 @NgModule({
   declarations: [
@@ -18,8 +21,14 @@ import { ServicesComponent } from './components/services/services.component';
     HeroComponent,
     JazalCtaComponent,
     AboutCtaComponent,
+
+    LegacyAboutComponent,
+    AboutUsCtaComponent,
+    AboutCtaComponent,
+
     ProjectsComponent,
     ServicesComponent,
+
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -29,8 +38,13 @@ import { ServicesComponent } from './components/services/services.component';
     HeroComponent,
     JazalCtaComponent,
     AboutCtaComponent,
+
+    LegacyAboutComponent,
+    AboutUsCtaComponent,
+
     ProjectsComponent,
     ServicesComponent,
+
   ],
 })
 export class SharedModule {}
