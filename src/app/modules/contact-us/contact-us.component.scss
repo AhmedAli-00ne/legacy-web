@@ -1,0 +1,265 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #121212;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.contact-hero {
+  background: url('../../../assets/images/contact.jpg') no-repeat center center / cover;
+  height: 450px;
+  position: relative;
+  overflow: hidden; // For parallax effect
+
+  .overlay {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    position: absolute;
+    bottom: 0;
+    width: 20%;
+    left: 40%;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1rem 0;
+
+    h1 {
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      border-bottom: 2px solid #e05206;
+      display: inline-block;
+      padding-bottom: 0.5rem;
+    }
+  }
+}
+
+// Hide sections initially with CSS - this prevents flickering
+#formSection {
+  opacity: 0;
+  transform: translateY(80px);
+}
+
+#locationSection {
+  opacity: 0;
+  transform: translateY(80px);
+}
+
+// Hide child elements initially
+#formSection .form-row,
+#formSection textarea {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+#formSection .btn {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+#locationSection .location-block {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+}
+
+.contact-form {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 2rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      // Remove initial animation states, let GSAP handle them
+
+      input,
+      select {
+        flex: 1 1 30%;
+        background: transparent;
+        border: 1px solid #fff;
+        background-color: #121212;
+        padding: 1rem;
+        color: #fff;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: #e05206;
+          box-shadow: 0 0 0 2px rgba(224, 82, 6, 0.2);
+        }
+
+        &::placeholder {
+          color: #ccc;
+        }
+      }
+    }
+
+    textarea {
+      height: 150px;
+      background: transparent;
+      border: 1px solid #fff;
+      padding: 1rem;
+      color: #fff;
+      font-size: 1rem;
+      resize: none;
+      // Remove initial animation states, let GSAP handle them
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #e05206;
+        box-shadow: 0 0 0 2px rgba(224, 82, 6, 0.2);
+      }
+
+      &::placeholder {
+        color: #ccc;
+      }
+    }
+
+    button {
+      align-self: center;
+      padding: 1rem 2rem;
+      background-color: #e05206;
+      color: #fff;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      // Remove initial animation states, let GSAP handle them
+
+      &:hover {
+        background-color: #b63d04;
+        border-bottom: 1px solid #fff;
+        transform: translateY(-2px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+.locations {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  .location-block {
+    background-color: #1e1e1e;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    border-left: 4px solid #e05206;
+    transition: all 0.3s ease;
+    // Remove initial animation states, let GSAP handle them
+    will-change: transform, opacity;
+
+    &:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    h2, h3 {
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    h3 {
+      color: #e05206;
+    }
+
+    p, a {
+      font-size: 1rem;
+      margin: 0.25rem 0;
+      color: #ccc;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #e05206;
+        color: #fff;
+        border-color: #e05206;
+        transform: translateY(-2px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+
+    .branch {
+      margin-top: 1rem;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .contact-hero .overlay {
+    width: 80%;
+    left: 10%;
+    
+    h1 {
+      font-size: 2rem;
+    }
+  }
+
+  .form-row {
+    flex-direction: column !important;
+    
+    input,
+    select {
+      flex: 1 1 100% !important;
+    }
+  }
+
+  .contact-form,
+  .locations {
+    padding: 1rem;
+    margin: 2rem auto;
+  }
+}
+
+// Reduced motion preference
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+  
+
+  .email::before {
+  content: "Email: info@legacyestates.com"; /* Works fine too */
+}
+
+  .email2::before {
+  content: "Email: coast@legacyestates.com"; /* Works fine too */
+}
+
+  .email3::before {
+  content: "Email: capital@legacyestates.com"; /* Works fine too */
+}

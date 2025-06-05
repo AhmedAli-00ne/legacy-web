@@ -1,0 +1,43 @@
+<section class="legacy-news">
+  <div class="hero-image">
+    <div class="nav-tabs">
+      <div
+        *ngFor="let tab of tabs"
+        (click)="setActiveTab(tab)"
+        [class.active]="tab === activeTab"
+        class="tab"
+      >
+        {{ tab }}
+        <span class="underline" *ngIf="tab === activeTab"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <ng-container [ngSwitch]="activeTab">
+      <div *ngSwitchCase="'Latest News'">
+        <h2>Latest News</h2>
+        <p>
+          Stay updated on Legacy Estates’ milestones, achievements, and announcements.
+        </p>
+        <a class="cta">Read More</a>
+      </div>
+
+      <div *ngSwitchCase="'Industry Updates'">
+        <h2>Industry Updates</h2>
+        <p>
+          Insights on Egypt’s real estate trends, investment climate, and architectural innovations.
+        </p>
+        <a class="cta">Read More</a>
+      </div>
+
+      <div *ngSwitchCase="'Company Announcements'">
+        <h2>Company Announcements</h2>
+        <p>
+          News about new launches, partnerships, and strategic developments.
+        </p>
+        <a class="cta">Read More</a>
+      </div>
+    </ng-container>
+  </div>
+</section>
