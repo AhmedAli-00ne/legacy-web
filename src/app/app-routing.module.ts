@@ -15,7 +15,16 @@ const routes: Routes = [
   {
     path:'properties',
     loadChildren:()=>import('./modules/properties/properties.module').then(m=> m.PropertiesModule) ,
+  },
+  {
+    path:'news',
+    loadChildren:()=>import('./modules/news/news.module').then(m=> m.NewsModule) ,
+  },
+  {
+    path:'contact',
+    loadChildren:()=>import('./modules/contact-us/contact-us.module').then(m=>m.ContactUsModule),
   }
+
 
 ];
 
