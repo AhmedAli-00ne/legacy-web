@@ -147,12 +147,13 @@
 
       .nav-links {
         list-style: none;
-        padding: 20px;
-        margin: 30px;
+        padding: 10px;
+        margin: 0px;
         width: 45%;
-
+        // background-color: #121212;
         li {
-          padding: 7px;
+          // background-color: #121212;
+          padding:7px;
           font-weight: bold;
           font-size: 18px;
           margin-bottom: 20px;
@@ -162,7 +163,9 @@
             text-decoration: none;
             color: white;
             position: relative;
-
+            &:hover{
+              color: chocolate;
+            }
             &::after {
               content: "";
               position: absolute;
@@ -170,8 +173,8 @@
               bottom: -4px;
               width: 0;
               height: 2px;
-              background-color: white;
-              transition: width 0.3s ease;
+              background-color: chocolate;
+              transition: width 0.4s ease;
             }
 
             &:hover::after {
@@ -183,6 +186,7 @@
             cursor: pointer;
 
             .dropdown {
+              background-color: #121212;
               display: none;
               position: absolute;
               top: 100%;
@@ -199,14 +203,15 @@
                   display: block;
                   padding: 10px 15px;
 
-                  &:hover {
-                    background-color: #333;
-                  }
+                  // &:hover {
+                  //   // background-color: #333;
+                  // }
                 }
               }
             }
 
             &.open .dropdown {
+              background-color: #121212;
               display: block;
               animation: fadeIn 0.3s ease-out forwards;
             }
