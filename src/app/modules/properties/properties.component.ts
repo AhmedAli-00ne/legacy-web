@@ -4,132 +4,231 @@ import { gsap } from 'gsap';
 @Component({
   selector: 'app-properties',
   templateUrl: './properties.component.html',
-  styleUrls: ['./properties.component.scss']
+  styleUrls: ['./properties.component.scss'],
 })
-export class PropertiesComponent implements AfterViewInit {
+export class PropertiesComponent {
+  countries = ['Egypt', 'USA'];
+  cities = ['Cairo', 'New York'];
+  projects = ['Jazal', 'The Metropolitan Lofts'];
+  propertyTypes = ['Apartment', 'Villa', 'Condo'];
 
-  constructor() { }
+  selectedCountry = '';
+  selectedCity = '';
+  selectedProject = '';
+  selectedType = '';
 
-  ngAfterViewInit(): void {
-    gsap.utils.toArray<HTMLElement>(".animate-text").forEach((el, index) => {
-  gsap.from(el, {
-    opacity: 0,
-    y: 20,
-    duration: 1,
-    delay: 1 + index * 0.2,
-    ease: "power3.out"
-  });
-});
+  properties = [
+    {
+      name: 'The Grand Residences',
+      location: 'New York, NY',
+      image: '../../../assets/images/news2.jpg',
+      country: 'USA',
+      city: 'New York',
+      project: 'The Grand Residences',
+      type: 'Apartment',
+    },
+    {
+      name: 'The Metropolitan Lofts',
+      location: 'New York, NY',
+      image: '../../../assets/images/news2.jpg',
+      country: 'USA',
+      city: 'New York',
+      project: 'The Metropolitan Lofts',
+      type: 'Apartment',
+    },
+    {
+      name: 'The Skyline Apartments',
+      location: 'New York, NY',
+      image: '../../../assets/images/news2.jpg',
+      country: 'USA',
+      city: 'New York',
+      project: 'The Skyline Apartments',
+      type: 'Condo',
+    },
+    {
+      name: 'The Central Park Estates',
+      location: 'New York, NY',
+      image: '../../../assets/images/news2.jpg',
+      country: 'USA',
+      city: 'New York',
+      project: 'The Central Park Estates',
+      type: 'Apartment',
+    },
+    {
+      name: 'The Riverside Villas',
+      location: 'New York, NY',
+      image: '../../../assets/images/news2.jpg',
+      country: 'USA',
+      city: 'New York',
+      project: 'The Riverside Villas',
+      type: 'Villa',
+    },
+    {
+      name: 'The Downtown Condos',
+      location: 'New York, NY',
+      image: '../../../assets/images/news2.jpg',
+      country: 'USA',
+      city: 'New York',
+      project: 'The Downtown Condos',
+      type: 'Condo',
+    },
+    {
+      name: 'Palm Grove Estates',
+      location: 'Cairo, Egypt',
+      image: '../../../assets/images/news2.jpg',
+      country: 'Egypt',
+      city: 'Cairo',
+      project: 'Palm Grove Estates',
+      type: 'Villa',
+    },
+    {
+      name: 'Jazal Residences',
+      location: 'Cairo, Egypt',
+      image: '../../../assets/images/news2.jpg',
+      country: 'Egypt',
+      city: 'Cairo',
+      project: 'Jazal',
+      type: 'Apartment',
+    },
+    {
+      name: 'Giza Heights',
+      location: 'Giza, Egypt',
+      image: '../../../assets/images/news2.jpg',
+      country: 'Egypt',
+      city: 'Giza',
+      project: 'Giza Heights',
+      type: 'Apartment',
+    },
+    {
+      name: 'Nile River View Condos',
+      location: 'Cairo, Egypt',
+      image: '../../../assets/images/news2.jpg',
+      country: 'Egypt',
+      city: 'Cairo',
+      project: 'Nile River View',
+      type: 'Condo',
+    },
+    {
+      name: 'The Oasis Villas',
+      location: 'Cairo, Egypt',
+      image: '../../../assets/images/news2.jpg',
+      country: 'Egypt',
+      city: 'Cairo',
+      project: 'The Oasis',
+      type: 'Villa',
+    },
+    {
+      name: 'Legacy Apartments',
+      location: 'New York, NY',
+      image: '../../../assets/images/news2.jpg',
+      country: 'USA',
+      city: 'New York',
+      project: 'Legacy Apartments',
+      type: 'Apartment',
+    },
+    {
+      name: 'The Parkside Residences',
+      location: 'New York, NY',
+      image: '../../../assets/images/news2.jpg',
+      country: 'USA',
+      city: 'New York',
+      project: 'The Parkside',
+      type: 'Apartment',
+    },
+    {
+      name: 'Cairo Central Condos',
+      location: 'Cairo, Egypt',
+      image: '../../../assets/images/news2.jpg',
+      country: 'Egypt',
+      city: 'Cairo',
+      project: 'Cairo Central',
+      type: 'Condo',
+    },
+    {
+      name: 'El Sheikh Zayed Gardens',
+      location: 'Giza, Egypt',
+      image: '../../../assets/images/news2.jpg',
+      country: 'Egypt',
+      city: 'Giza',
+      project: 'El Sheikh Zayed Gardens',
+      type: 'Villa',
+    },
+    {
+      name: 'Zamalek Heights',
+      location: 'Cairo, Egypt',
+      image: '../../../assets/images/news2.jpg',
+      country: 'Egypt',
+      city: 'Cairo',
+      project: 'Zamalek Heights',
+      type: 'Apartment',
+    },
+    {
+      name: 'Brooklyn Villas',
+      location: 'New York, NY',
+      image: '../../../assets/images/news2.jpg',
+      country: 'USA',
+      city: 'New York',
+      project: 'Brooklyn Villas',
+      type: 'Villa',
+    },
+    {
+      name: 'Manhattan Sky Condos',
+      location: 'New York, NY',
+      image: '../../../assets/images/news2.jpg',
+      country: 'USA',
+      city: 'New York',
+      project: 'Manhattan Sky',
+      type: 'Condo',
+    },
+  ];
 
-gsap.to(".title", {
-  backgroundSize: "100% 100%",
-  duration: 2,
-  ease: "power2.out"
-});
+  currentPage = 1;
+  pageSize = 6;
 
+  get filteredProperties() {
+    let result = this.properties;
 
-    this.initBlobAnimations();
-    this.initBoxAnimations();
+    if (this.selectedCountry)
+      result = result.filter((p) => p.country === this.selectedCountry);
+    if (this.selectedCity)
+      result = result.filter((p) => p.city === this.selectedCity);
+    if (this.selectedProject)
+      result = result.filter((p) => p.project === this.selectedProject);
+    if (this.selectedType)
+      result = result.filter((p) => p.type === this.selectedType);
 
-    // Content fade-in animation
-    gsap.from(".properties-content", {
-      opacity: 0,
-      y: 50,
-      duration: 1.5,
-      delay: 0.8,
-      ease: "power3.out"
-    });
-
-    // Optional: fade in blobs and boxes
-    gsap.from(".blob", {
-      opacity: 0,
-      duration: 2,
-      stagger: 0.3,
-      ease: "power2.out"
-    });
-
-    gsap.from(".animated-box", {
-      opacity: 0,
-      duration: 2,
-      stagger: 0.5,
-      ease: "power2.out"
-    });
+    const start = (this.currentPage - 1) * this.pageSize;
+    return result.slice(start, start + this.pageSize);
   }
 
-  private initBlobAnimations(): void {
-    const blobs = gsap.utils.toArray<HTMLElement>(".blob");
+  get totalPages() {
+    let result = this.properties;
 
-    blobs.forEach((blob: HTMLElement) => {
-      gsap.set(blob, {
-        x: gsap.utils.random(-100, 100),
-        y: gsap.utils.random(-80, 80),
-        scale: gsap.utils.random(0.8, 1.2),
-        rotation: gsap.utils.random(-45, 45)
-      });
+    if (this.selectedCountry)
+      result = result.filter((p) => p.country === this.selectedCountry);
+    if (this.selectedCity)
+      result = result.filter((p) => p.city === this.selectedCity);
+    if (this.selectedProject)
+      result = result.filter((p) => p.project === this.selectedProject);
+    if (this.selectedType)
+      result = result.filter((p) => p.type === this.selectedType);
 
-      const tl = gsap.timeline({ repeat: -1, yoyo: true });
-
-      tl.to(blob, {
-        x: `+=${gsap.utils.random(-80, 80)}`,
-        y: `+=${gsap.utils.random(-60, 60)}`,
-        scale: gsap.utils.random(0.9, 1.3),
-        rotation: gsap.utils.random(-90, 90),
-        duration: gsap.utils.random(6, 12),
-        ease: "sine.inOut"
-      }).to(blob, {
-        x: `+=${gsap.utils.random(-80, 80)}`,
-        y: `+=${gsap.utils.random(-60, 60)}`,
-        scale: gsap.utils.random(0.9, 1.3),
-        rotation: gsap.utils.random(-90, 90),
-        duration: gsap.utils.random(6, 12),
-        ease: "sine.inOut"
-      });
-    });
+    return Math.ceil(result.length / this.pageSize);
   }
 
-  private initBoxAnimations(): void {
-    const boxes = gsap.utils.toArray<HTMLElement>(".animated-box");
+  get totalPagesArray() {
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
 
-    boxes.forEach((box: HTMLElement, index: number) => {
-      gsap.set(box, {
-        x: gsap.utils.random(-window.innerWidth / 3, window.innerWidth / 3),
-        y: gsap.utils.random(-window.innerHeight / 3, window.innerHeight / 3),
-        z: gsap.utils.random(-500, 500),
-        scale: gsap.utils.random(0.6, 1.0),
-        rotationX: gsap.utils.random(0, 360),
-        rotationY: gsap.utils.random(0, 360),
-        rotationZ: gsap.utils.random(0, 360),
-        opacity: gsap.utils.random(0.05, 0.2)
-      });
+  goToPage(page: number) {
+    this.currentPage = page;
+  }
 
-      const tl = gsap.timeline({ repeat: -1, yoyo: true, delay: index * 0.5 });
+  prevPage() {
+    if (this.currentPage > 1) this.currentPage--;
+  }
 
-      tl.to(box, {
-        x: gsap.utils.random(-window.innerWidth / 4, window.innerWidth / 4),
-        y: gsap.utils.random(-window.innerHeight / 4, window.innerHeight / 4),
-        z: gsap.utils.random(-400, 400),
-        rotationX: gsap.utils.random(-180, 180),
-        rotationY: gsap.utils.random(-180, 180),
-        rotationZ: gsap.utils.random(-180, 180),
-        scale: gsap.utils.random(0.7, 1.1),
-        opacity: gsap.utils.random(0.05, 0.25),
-        duration: gsap.utils.random(12, 20),
-        ease: "sine.inOut"
-      }).to(box, {
-        x: gsap.utils.random(-window.innerWidth / 4, window.innerWidth / 4),
-        y: gsap.utils.random(-window.innerHeight / 4, window.innerHeight / 4),
-        z: gsap.utils.random(-400, 400),
-        rotationX: gsap.utils.random(-180, 180),
-        rotationY: gsap.utils.random(-180, 180),
-        rotationZ: gsap.utils.random(-180, 180),
-        scale: gsap.utils.random(0.6, 1.0),
-        opacity: gsap.utils.random(0.05, 0.25),
-        duration: gsap.utils.random(12, 20),
-        ease: "sine.inOut"
-      });
-    });
-
-
-
+  nextPage() {
+    if (this.currentPage < this.totalPages) this.currentPage++;
   }
 }

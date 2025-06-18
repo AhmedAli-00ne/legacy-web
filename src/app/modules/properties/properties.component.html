@@ -1,34 +1,53 @@
-<div class="properties-container">
-  <div class="blob blob-1"></div>
-  <div class="blob blob-1"></div>
+<section class="properties-page">
+  <h2>Find your place</h2>
 
-  <div class="blob blob-2"></div>
-  <div class="blob blob-2"></div>
+  <div class="filters">
+    <select [(ngModel)]="selectedCountry">
+      <option value="">Country</option>
+      <option *ngFor="let country of countries" [value]="country">
+        {{ country }}
+      </option>
+    </select>
 
-  <div class="animated-box"></div>
-  <div class="animated-box"></div>
-  <div class="animated-box"></div>
-  <div class="animated-box"></div>
-  <div class="animated-box"></div>
-  <div class="animated-box"></div>
+    <select [(ngModel)]="selectedCity">
+      <option value="">City</option>
+      <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+    </select>
 
-  <div class="properties-content">
-    <h1 class="title animate-text">Properties</h1>
-    <h2 class="subtitle animate-text">Featured Listings</h2>
-    <p class="description animate-text">
-      Discover curated properties designed for tranquility, comfort, and timeless living.
-    </p>
+    <select [(ngModel)]="selectedProject">
+      <option value="">Projects</option>
+      <option *ngFor="let project of projects" [value]="project">
+        {{ project }}
+      </option>
+    </select>
 
-    <h3 class="section-title animate-text">Explore Our Properties</h3>
-    <p class="animate-text">
-      From quiet sanctuaries to dynamic residences, each Legacy property embodies a balance of form,
-      function, and natural beauty.
-    </p>
+    <select [(ngModel)]="selectedType">
+      <option value="">Property Type</option>
+      <option *ngFor="let type of propertyTypes" [value]="type">
+        {{ type }}
+      </option>
+    </select>
+  </div>
 
-    <div class="property-info animate-text">
-      <h4>Available Developments</h4>
-      <p><strong>Jazal:</strong> A collection of serene apartments in the heart of Sheikh Zayed.</p>
+  <div class="property-grid">
+    <div class="property-card" *ngFor="let property of filteredProperties">
+      <img [src]="property.image" alt="{{ property.name }}" />
+      <h4>{{ property.name }}</h4>
+      <p>{{ property.location }}</p>
     </div>
   </div>
-  <app-properties-cta></app-properties-cta>
-</div>
+
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">&lt;</button>
+    <button
+      *ngFor="let page of totalPagesArray"
+      [class.active]="page === currentPage"
+      (click)="goToPage(page)"
+    >
+      {{ page }}
+    </button>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+      &gt;
+    </button>
+  </div>
+</section>
