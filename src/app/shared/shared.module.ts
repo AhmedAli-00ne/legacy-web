@@ -12,6 +12,7 @@ import { AboutUsCtaComponent } from './components/about-us-cta/about-us-cta.comp
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ServicesComponent } from './components/services/services.component';
 import { PropertiesCtaComponent } from './components/properties-cta/properties-cta.component';
+import { PartnersComponent } from './components/partners/partners.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { PropertiesCtaComponent } from './components/properties-cta/properties-c
     ProjectsComponent,
     ServicesComponent,
     PropertiesCtaComponent,
+    PartnersComponent,
 
   ],
   imports: [CommonModule, RouterModule],
@@ -47,6 +49,7 @@ import { PropertiesCtaComponent } from './components/properties-cta/properties-c
     ProjectsComponent,
     ServicesComponent,
     PropertiesCtaComponent,
+    PartnersComponent,
 
   ],
 })

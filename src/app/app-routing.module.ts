@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path:'contact',
     loadChildren:()=>import('./modules/contact-us/contact-us.module').then(m=>m.ContactUsModule),
+  },
+  {
+    path:'partners',
+    loadChildren:()=>import('./modules/partners-module/partners-module.module').then(m=>m.PartnersModuleModule),
   }
 
 
