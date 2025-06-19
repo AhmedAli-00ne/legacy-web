@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 @Component({
   selector: 'app-properties-cta',
   templateUrl: './properties-cta.component.html',
-  styleUrls: ['./properties-cta.component.scss']
+  styleUrls: ['./properties-cta.component.scss'],
 })
 export class PropertiesCtaComponent implements AfterViewInit {
   @ViewChild('ctaSection', { static: true }) ctaSection!: ElementRef;
@@ -18,20 +18,44 @@ export class PropertiesCtaComponent implements AfterViewInit {
       this.btn1.nativeElement.querySelector('span'),
       'Properties'
     );
-    gsap.from(this.ctaSection.nativeElement.querySelector('.cta-content'), {
-      opacity: 0,
-      y: 50,
-      duration: 1.2,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: this.ctaSection.nativeElement,
-        start: 'top 80%',
-        toggleActions: 'play none none none'
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            gsap.to(
+              this.ctaSection.nativeElement.querySelector('.cta-content'),
+              {
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                stagger: 0.3,
+                ease: 'power3.out',
+              }
+            );
+          } else {
+            gsap.to(
+              this.ctaSection.nativeElement.querySelector('.cta-content'),
+              {
+                opacity: 0,
+                y: 50,
+                duration: 1.2,
+                stagger: 0.3,
+                ease: 'power3.out',
+              }
+            );
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 1,
       }
-    });
+    );
+
+    observer.observe(this.ctaSection.nativeElement);
   }
 
-   initScramble(el: HTMLElement, text: string) {
+  initScramble(el: HTMLElement, text: string) {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*';
     let interval: any;
 

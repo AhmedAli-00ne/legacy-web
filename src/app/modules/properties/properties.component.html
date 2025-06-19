@@ -1,5 +1,5 @@
 <section class="properties-page">
-  <h2>Find your place</h2>
+  <h2 style="margin-top: 4rem; color: #fff">Find your place</h2>
 
   <div class="filters">
     <select [(ngModel)]="selectedCountry">
@@ -29,25 +29,28 @@
     </select>
   </div>
 
-  <div class="property-grid">
-    <div class="property-card" *ngFor="let property of filteredProperties">
-      <img [src]="property.image" alt="{{ property.name }}" />
-      <h4>{{ property.name }}</h4>
-      <p>{{ property.location }}</p>
+  <div class="grid-container">
+    <div class="property-grid">
+      <div class="property-card" *ngFor="let property of filteredProperties">
+        <img [src]="property.image" alt="{{ property.name }}" />
+        <h4>{{ property.name }}</h4>
+        <p>{{ property.location }}</p>
+      </div>
+    </div>
+
+    <div class="pagination">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">&lt;</button>
+      <button
+        *ngFor="let page of totalPagesArray"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)"
+      >
+        {{ page }}
+      </button>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        &gt;
+      </button>
     </div>
   </div>
-
-  <div class="pagination">
-    <button (click)="prevPage()" [disabled]="currentPage === 1">&lt;</button>
-    <button
-      *ngFor="let page of totalPagesArray"
-      [class.active]="page === currentPage"
-      (click)="goToPage(page)"
-    >
-      {{ page }}
-    </button>
-    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
-      &gt;
-    </button>
-  </div>
+  <span></span>
 </section>
