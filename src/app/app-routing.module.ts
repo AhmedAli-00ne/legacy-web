@@ -27,7 +27,11 @@ const routes: Routes = [
   {
     path:'partners',
     loadChildren:()=>import('./modules/partners-module/partners-module.module').then(m=>m.PartnersModuleModule),
-  }
+  },
+  {
+    path:'service',
+    loadChildren:()=>import('./modules/service-module/service-module.module').then(m=>m.ServiceModuleModule),
+  },
 
 
 ];

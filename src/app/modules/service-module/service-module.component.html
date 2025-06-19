@@ -1,0 +1,58 @@
+<section class="services-section">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="services-title">SERVICES</h1>
+      <div class="title-divider"></div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content-section">
+    <!-- What We Offer Section -->
+    <div class="section-container intro-section">
+      <div class="container">
+        <h2 class="section-title">What We Offer</h2>
+        <p class="section-description">
+          We offer integrated real estate solutions, from design and development to personalized sales services. 
+          Our comprehensive approach ensures excellence at every stage of your real estate journey.
+        </p>
+      </div>
+    </div>
+
+    <!-- Our Services Section -->
+    <div class="section-container services-grid-section">
+      <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+          <div class="service-card" *ngFor="let service of services">
+            <div class="service-icon">
+              <i class="material-icons">{{ service.icon }}</i>
+            </div>
+            <h3 class="service-title">{{ service.title }}</h3>
+            <p class="service-description">{{ service.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How We Can Help Section -->
+    <div class="section-container help-section">
+      <div class="container">
+        <h2 class="section-title">How We Can Help</h2>
+        <p class="section-description">
+          Whether you seek your next home, an investment opportunity, or a partnership, Legacy Estates delivers 
+          expertise at every step. Our team of professionals is committed to providing unmatched excellence 
+          spanning different disciplines and fields.
+        </p>
+        
+        <div class="cta-section">
+          <button class="cta-button" (click)="onGetInTouch()">
+            Get In Touch
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
