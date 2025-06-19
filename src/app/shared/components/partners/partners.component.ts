@@ -78,7 +78,7 @@ export class PartnersComponent implements AfterViewInit {
           scale: 1.08,
           rotateX: 5,
           rotateY: -5,
-          boxShadow: '0 15px 25px rgba(255, 255, 255, 0.2)',
+          boxShadow: '0 15px 25px rgba(247, 189, 65, 0.32)',
           duration: 0.3,
           ease: 'power2.out',
         });
@@ -89,7 +89,7 @@ export class PartnersComponent implements AfterViewInit {
           scale: 1,
           rotateX: 0,
           rotateY: 0,
-          boxShadow: '0 0 15px rgba(255, 255, 255, 0.1)',
+          boxShadow: '0 0 15px rgba(255, 255, 255, 0.5)',
           duration: 0.4,
           ease: 'power2.inOut',
         });

@@ -26,22 +26,39 @@
 <div #sideMenu class="side-menu" [class.open]="menuOpen">
   <div class="side-menu-content">
     <div class="menu-columns">
-      <ul class="nav-links">
-        <li><a href="./">Home</a></li>
-        <li><a href="./about">About us</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Partners</a></li>
-        <li><a href="./news">News</a></li>
-        <li><a href="./properties">Properties</a></li>
-        <li><a href="./contact">Contact us</a></li>
-        <li class="has-dropdown" (click)="toggleDropdown($event)">
-          <a >Our Developments</a>
-          <ul class="dropdown">
-            <li><a href="#">Jazal</a></li>
-          </ul>
-        </li>
-      </ul>
+      <div class="left-column">
+        <ul class="nav-links">
+          <li><a href="./">Home</a></li>
+          <li><a href="./about">About us</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="partners">Partners</a></li>
+          <li><a href="./news">News</a></li>
+          <li><a href="./properties">Properties</a></li>
+          <li><a href="./contact">Contact us</a></li>
+          <li class="has-dropdown" (click)="toggleDropdown($event)">
+            <a class="drp-li">Our Developments</a>
+            <ul class="dropdown">
+              <li><a href="#">Jazal</a></li>
+            </ul>
+          </li>
+        </ul>
 
+        <div class="social-icons">
+        <a href="https://facebook.com" target="_blank"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a href="https://twitter.com" target="_blank"
+          ><i class="fab fa-twitter"></i
+        ></a>
+        <a href="https://instagram.com" target="_blank"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="https://linkedin.com" target="_blank"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+      </div>
+
+      </div>
       <div class="vertical-divider"></div>
 
       <div class="contact-info">
