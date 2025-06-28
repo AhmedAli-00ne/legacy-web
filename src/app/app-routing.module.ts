@@ -13,27 +13,43 @@ const routes: Routes = [
       import('./modules/about/about.module').then((m) => m.AboutModule),
   },
   {
-    path:'properties',
-    loadChildren:()=>import('./modules/properties/properties.module').then(m=> m.PropertiesModule) ,
+    path: 'properties',
+    loadChildren: () =>
+      import('./modules/properties/properties.module').then(
+        (m) => m.PropertiesModule
+      ),
   },
   {
-    path:'news',
-    loadChildren:()=>import('./modules/news/news.module').then(m=> m.NewsModule) ,
+    path: 'news',
+    loadChildren: () =>
+      import('./modules/news/news.module').then((m) => m.NewsModule),
   },
   {
-    path:'contact',
-    loadChildren:()=>import('./modules/contact-us/contact-us.module').then(m=>m.ContactUsModule),
+    path: 'contact',
+    loadChildren: () =>
+      import('./modules/contact-us/contact-us.module').then(
+        (m) => m.ContactUsModule
+      ),
   },
   {
-    path:'partners',
-    loadChildren:()=>import('./modules/partners-module/partners-module.module').then(m=>m.PartnersModuleModule),
+    path: 'partners',
+    loadChildren: () =>
+      import('./modules/partners-module/partners-module.module').then(
+        (m) => m.PartnersModuleModule
+      ),
   },
   {
-    path:'service',
-    loadChildren:()=>import('./modules/service-module/service-module.module').then(m=>m.ServiceModuleModule),
+    path: 'services',
+    loadChildren: () =>
+      import('./modules/service-module/service-module.module').then(
+        (m) => m.ServiceModuleModule
+      ),
   },
-
-
+  {
+    path: 'jazal',
+    loadChildren: () =>
+      import('./modules/jazal/jazal.module').then((m) => m.JazalModule),
+  },
 ];
 
 @NgModule({

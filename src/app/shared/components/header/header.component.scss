@@ -5,14 +5,13 @@
   height: 80px;
   z-index: 999;
   background: transparent;
-  color: white ;
+  color: white;
   transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   justify-content: space-between;
   padding: 20px 40px;
   will-change: transform, background-color;
   transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  
 
   .logo {
     font-size: 28px;
@@ -81,9 +80,8 @@
   &.scrolled {
     color: white;
   }
-
 }
-.header.menu-open{
+.header.menu-open {
   color: white;
 }
 
@@ -155,7 +153,7 @@
         // background-color: #121212;
         li {
           // background-color: #121212;
-          padding:7px;
+          padding: 7px;
           font-weight: bold;
           font-size: 18px;
           margin-bottom: 20px;
@@ -165,7 +163,7 @@
             text-decoration: none;
             color: white;
             position: relative;
-            &:hover{
+            &:hover {
               color: chocolate;
             }
             &::after {
@@ -183,7 +181,7 @@
               width: 100%;
             }
           }
-          
+
           &.has-dropdown {
             cursor: pointer;
             width: 100%;
@@ -295,7 +293,6 @@
   }
 }
 
-
 .social-icons {
   display: flex;
   gap: 1rem;
@@ -313,7 +310,7 @@
   border-radius: 50%;
   color: white;
   font-size: 1.2rem;
-  transition: background-color 0.3s  ;
+  transition: background-color 0.3s;
   text-decoration: none;
 }
 

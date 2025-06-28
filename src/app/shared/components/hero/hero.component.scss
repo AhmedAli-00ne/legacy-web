@@ -1,33 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap");
+
 .hero {
   position: relative;
   display: flex;
   height: 100vh;
   width: 100%;
-  overflow-x: hidden;
-  margin-bottom: 6rem;
+  overflow: hidden;
   background-image: url("../../../../assets/images/background-about-us.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  overflow: hidden;
+  justify-content: center;
+  align-items: center;
 }
-.logo {
+
+.hero-content {
+  position: relative;
   width: 100%;
+  max-width: 1200px;
   height: 100%;
-  object-fit: contain;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; // ✅ centers .tagline-group vertically
+}
+
+.logo {
   position: absolute;
+  width: 100%;
+  height: 70%;
+  object-fit: contain;
+  pointer-events: none;
+  top: 80px;
 }
-.logo1 {
-  bottom: 300px;
+
+/* Leave .logo1, .logo2, .topText, .bottomText exactly as you had them positioned */
+
+.tagline-group {
+  z-index: 2; // ✅ Ensure it appears above background
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 32rem; // ✅ Moves it visually *below* the branding images
+  text-align: center;
+
+  .tagline {
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 2rem;
+    //font-weight: 300;
+    letter-spacing: 1px;
+    font-family: "Playfair Display", serif;
+    text-transform: uppercase;
+    clip-path: inset(0 100% 0 0);
+    display: inline-block;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+
+    .hero-btn {
+      padding: 0.75rem 2rem;
+      border: 1px solid white;
+      background-color: transparent;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+
+      &:hover {
+        background-color: white;
+        color: black;
+      }
+    }
+  }
 }
-.logo2 {
-  top: 300px;
+.jazal-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  .btn-text {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .btn-icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  &:hover {
+    .btn-text {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    .btn-icon {
+      opacity: 1;
+      transform: scale(1);
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
-/*
-.bottomText {
-  top: 300px;
+#bird {
+  visibility: hidden;
 }
-.topText {
-  bottom: 300px;
-}
-*/
