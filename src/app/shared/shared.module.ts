@@ -13,7 +13,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { ServicesComponent } from './components/services/services.component';
 import { PropertiesCtaComponent } from './components/properties-cta/properties-cta.component';
 import { PartnersComponent } from './components/partners/partners.component';
-
+import { UnitTypeModalComponent } from './components/unit-type-modal/unit-type-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { PartnersComponent } from './components/partners/partners.component';
     ServicesComponent,
     PropertiesCtaComponent,
     PartnersComponent,
-
+    UnitTypeModalComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -50,7 +50,7 @@ import { PartnersComponent } from './components/partners/partners.component';
     ServicesComponent,
     PropertiesCtaComponent,
     PartnersComponent,
-
+    UnitTypeModalComponent,
   ],
 })
 export class SharedModule {}

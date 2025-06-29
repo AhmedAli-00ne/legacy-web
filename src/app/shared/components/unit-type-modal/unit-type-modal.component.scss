@@ -1,0 +1,33 @@
+.btn-dark {
+  min-width: 84px;
+  height: 40px;
+  padding: 0 1rem;
+  background-color: #363636;
+  color: white;
+  font-weight: bold;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000; // Make sure it appears on top
+  background-color: rgba(0, 0, 0, 0.8); // dark overlay
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  padding: 2rem;
+}
+
+.layout-content-container {
+  background-color: #1a1a1a;
+  border-radius: 0.75rem;
+  max-width: 960px;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
