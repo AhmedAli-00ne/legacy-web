@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-service-module',
@@ -31,7 +32,7 @@ export class ServiceModuleComponent {
 
   onGetInTouch() {
     // Handle contact action - you can implement routing or modal opening here
-    console.log('Get In Touch clicked');
+    // console.log('Get In Touch clicked');
   }
 
 }
