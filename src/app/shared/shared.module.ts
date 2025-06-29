@@ -14,6 +14,7 @@ import { ServicesComponent } from './components/services/services.component';
 import { PropertiesCtaComponent } from './components/properties-cta/properties-cta.component';
 import { PartnersComponent } from './components/partners/partners.component';
 import { UnitTypeModalComponent } from './components/unit-type-modal/unit-type-modal.component';
+import { CloudTransitionComponent } from './components/cloud-transition/cloud-transition.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { UnitTypeModalComponent } from './components/unit-type-modal/unit-type-m
     PropertiesCtaComponent,
     PartnersComponent,
     UnitTypeModalComponent,
+    CloudTransitionComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -51,6 +53,7 @@ import { UnitTypeModalComponent } from './components/unit-type-modal/unit-type-m
     PropertiesCtaComponent,
     PartnersComponent,
     UnitTypeModalComponent,
+    CloudTransitionComponent,
   ],
 })
 export class SharedModule {}

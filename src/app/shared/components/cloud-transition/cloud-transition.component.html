@@ -1,0 +1,7 @@
+<div class="cloud-overlay" *ngIf="show">
+  <img
+    *ngFor="let cloud of clouds; let i = index"
+    [src]="cloud"
+    [class]="'cloud cloud-' + i"
+  />
+</div>

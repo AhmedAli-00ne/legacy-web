@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-jazal',
   templateUrl: './jazal.component.html',
   styleUrls: ['./jazal.component.scss'],
 })
-export class JazalComponent {
+export class JazalComponent implements AfterViewInit {
   properties = [
     {
       name: 'Rosée Apartments',
@@ -25,7 +26,7 @@ export class JazalComponent {
         },
         {
           name: 'Type B',
-          imageUrl: '../../../assets/images/typeaplan.png',
+          imageUrl: '../../../assets/images/typebplan.png',
         },
       ],
     },
@@ -47,10 +48,33 @@ export class JazalComponent {
       ],
     },
   ];
-
+  showClouds = true;
+  @ViewChild('overlay1') overlay1!: ElementRef;
+  @ViewChild('overlay2') overlay2!: ElementRef;
+  @ViewChild('overlayContainer', { static: true })
+  overlayContainer!: ElementRef;
+  showOverlay = true;
   showModal = false;
   selectedFloorPlans: any;
   constructor(private router: Router) {}
+
+  ngAfterViewInit(): void {
+    const tl = gsap.timeline({
+      onComplete: () => {
+        this.showOverlay = false;
+      },
+    });
+    tl.to(this.overlay1.nativeElement, {
+      duration: 1,
+      x: -1000,
+      ease: 'power2.out',
+    });
+    tl.to(this.overlay2.nativeElement, {
+      duration: 1,
+      x: 1000,
+      ease: 'power2.out',
+    });
+  }
 
   openModal(floorPlans: any) {
     this.selectedFloorPlans = floorPlans;
