@@ -17,6 +17,7 @@ import { CustomEase } from 'gsap/CustomEase';
 })
 export class HeaderComponent implements AfterViewInit, OnDestroy {
   menuOpen = false;
+  isDropdownOpen = false;
   private clickListener: () => void;
   private firstSectionHeight = 0;
   private header!: HTMLElement;
@@ -52,14 +53,11 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
   }
 
   private initAnimations(): void {
-    // Create custom easing curves
     CustomEase.create('logoReveal', 'M0,0 C0.4,0 0.2,1 1,1');
     CustomEase.create('menuSlide', 'M0,0 C0.1,0 0.2,1 1,1');
 
-    // Initialize timeline
     this.animationTimeline = gsap.timeline({ paused: true });
 
-    // Logo animation sequence
     this.animationTimeline
       .set(['.logo-icon', '.logo-text'], {
         opacity: 0,
@@ -102,7 +100,6 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
         '+=0.3'
       );
 
-    // Play animations after short delay
     setTimeout(() => this.animationTimeline.play(), 100);
   }
 
@@ -125,7 +122,6 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
     document.body.classList.add('menu-open');
     this.renderer.addClass(this.sideMenu.nativeElement, 'open');
 
-    // Optional fallback
     setTimeout(() => {
       if (this.menuOpen) {
         this.handleSideMenuTransitionEnd();
@@ -137,7 +133,6 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
     const content =
       this.sideMenu.nativeElement.querySelector('.side-menu-content');
 
-    // Immediately update header classes before animation starts
     this.renderer.removeClass(this.header, 'menu-opened');
     this.updateHeaderClasses();
 
@@ -152,6 +147,7 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
       },
     });
   }
+
   private handleSideMenuTransitionEnd(): void {
     if (this.menuOpen) {
       const content =
@@ -188,7 +184,6 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
     } else {
       this.renderer.removeClass(this.header, 'menu-opened');
 
-      // Fixed conditional class handling
       if (scrolledPastSection) {
         this.renderer.addClass(this.header, 'scrolled');
       } else {
@@ -199,19 +194,21 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
 
   toggleDropdown(event: Event): void {
     event.stopPropagation();
-    const target = event.currentTarget as HTMLElement;
-    const allDropdowns = document.querySelectorAll('.has-dropdown.open');
-
-    allDropdowns.forEach((el) => {
-      if (el !== target) el.classList.remove('open');
-    });
-
-    target.classList.toggle('open');
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 
   closeAllDropdowns(): void {
+    this.isDropdownOpen = false;
     const dropdowns = document.querySelectorAll('.has-dropdown.open');
     dropdowns.forEach((el) => el.classList.remove('open'));
+  }
+
+  onMenuItemClick(): void {
+    if (this.menuOpen) {
+      this.menuOpen = false;
+      this.closeMenuAnimation();
+    }
+    this.isDropdownOpen = false;
   }
 
   ngOnDestroy(): void {
