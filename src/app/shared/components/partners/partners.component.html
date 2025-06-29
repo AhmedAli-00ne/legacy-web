@@ -1,13 +1,16 @@
 <section class="partners-section">
-  <h2 class="section-title">PARTNERS & ASSOCIATES</h2>
-  <div class="partners-wrapper">
-    <div
-      class="partner-card"
-      *ngFor="let partner of partners"
-      #partnerCard
-    >
-      <img [src]="partner.logo" [alt]="partner.name" />
+  <div class="one">
+    <h2 class="section-title">PARTNERS & ASSOCIATES</h2>
+    <div class="partners-wrapper">
+      <div class="partner-card" *ngFor="let partner of partners" #partnerCard>
+        <img [src]="partner.logo" [alt]="partner.name" />
+      </div>
     </div>
+    <button class="learn-more" routerLink="/partners" #scrambleBtn1>
+      <span>LEARN MORE</span>
+    </button>
   </div>
-  <button class="learn-more" routerLink="/partners" #scrambleBtn1><span>LEARN MORE</span></button>
+  <div class="two">
+    <app-footer></app-footer>
+  </div>
 </section>
