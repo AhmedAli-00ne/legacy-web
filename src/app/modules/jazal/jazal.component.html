@@ -3,12 +3,19 @@
   <span #overlay2 class="white-layer"></span>
 </div>
 <div
-  class="relative flex size-full min-h-screen flex-col bg-[#1a1a1a] dark group/design-root overflow-x-hidden"
-  style="font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif"
+  class="relative flex size-full min-h-screen flex-col bg-[#1a1a1a] dark group/design-root overflow-x-hidden bg-cover bg-center bg-no-repeat"
+  style="
+    font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.1) 0%,
+        rgba(0, 0, 0, 0.4) 100%
+      ),
+      url('../../../assets/images/Jazal Background.png');
+  "
 >
   <div class="layout-container flex h-full grow flex-col">
     <div class="px-40 flex flex-1 justify-center py-5">
-      <div class="layout-content-container flex flex-col max-w-[1080px] flex-1">
+      <div class="layout-content-container flex flex-col max-w-[1280px] flex-1">
         <div class="@container">
           <div class="@[620px]:p-4">
             <div
@@ -18,7 +25,7 @@
                     rgba(0, 0, 0, 0.1) 0%,
                     rgba(0, 0, 0, 0.4) 100%
                   ),
-                  url('../../../assets/images/Screenshot_1.png');
+                  url('../../../assets/images/Jazal\ Master\ Plan.png');
               "
             ></div>
           </div>

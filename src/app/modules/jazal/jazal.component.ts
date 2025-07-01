@@ -13,20 +13,40 @@ export class JazalComponent implements AfterViewInit {
       name: 'Rosée Apartments',
       description:
         'Spacious apartments with premium finishes and breathtaking views. Click to view floor plans.',
-      image: 'prop.png',
+      image: 'assets/images/RoseeApartments/Cover.jpg',
       type: 'luxury-apartments',
       floorPlans: [
         {
           name: 'Ground Floor',
-          imageUrl: '../../../assets/images/groundplan.png',
+          imageUrl: 'RoseeApartments/GroundFloor.png',
+          types: [
+            {
+              name: 'Type A',
+              imageUrl: 'RoseeApartments/TypeA.png',
+            },
+            {
+              name: 'Type B',
+              imageUrl: 'RoseeApartments/TypeB.png',
+            },
+            {
+              name: 'Type C',
+              imageUrl: 'RoseeApartments/TypeC.png',
+            },
+          ],
         },
         {
-          name: 'Type A',
-          imageUrl: '../../../assets/images/typeaplan.png',
-        },
-        {
-          name: 'Type B',
-          imageUrl: '../../../assets/images/typebplan.png',
+          name: 'Typical Floor',
+          imageUrl: 'RoseeApartments/TypicalFloor.png',
+          types: [
+            {
+              name: 'Type D',
+              imageUrl: 'RoseeApartments/TypeD.png',
+            },
+            {
+              name: 'Type E',
+              imageUrl: 'RoseeApartments/TypeE.png',
+            },
+          ],
         },
       ],
     },
@@ -34,7 +54,7 @@ export class JazalComponent implements AfterViewInit {
       name: 'Siléne Apartments',
       description:
         'Exclusive penthouses offering the ultimate in luxury and privacy. Click to view floor plans.',
-      image: 'prop.png',
+      image: '../../../assets/images/R5.jpg',
       type: 'penthouses',
       floorPlans: [
         {
