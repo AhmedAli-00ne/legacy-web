@@ -1,4 +1,6 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { gsap } from 'gsap';
 
 @Component({
@@ -8,7 +10,7 @@ import { gsap } from 'gsap';
 })
 export class PropertiesComponent {
   countries = ['Egypt', 'USA'];
-  cities = ['Cairo', 'New York'];
+  cities = ['Cairo', 'New York','Giza'];
   projects = ['Jazal', 'The Metropolitan Lofts'];
   propertyTypes = ['Apartment', 'Villa', 'Condo'];
 
@@ -19,242 +21,92 @@ export class PropertiesComponent {
 
   properties = [
     {
-      name: 'The Grand Residences',
-      location: 'New York, NY',
-      image: '../../../assets/images/news2.jpg',
-      country: 'USA',
-      city: 'New York',
-      project: 'The Grand Residences',
+      name: 'Rosée Apartments',
+      location: 'Sheikh Zayed',
+      image: 'assets/images/RoseeApartments/Cover.jpg',
+      country: 'Egypt',
+      city: 'Giza',
+      project: 'Jazal',
       type: 'Apartment',
       floorPlans: [
-        { name: 'Ground Floor', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Unit A', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
-    {
-      name: 'The Metropolitan Lofts',
-      location: 'New York, NY',
-      image: '../../../assets/images/news2.jpg',
-      country: 'USA',
-      city: 'New York',
-      project: 'The Metropolitan Lofts',
-      type: 'Apartment',
-      floorPlans: [
-        { name: 'Loft Level', imageUrl: '../../../assets/images/news2.jpg' },
         {
-          name: 'Penthouse View',
-          imageUrl: '../../../assets/images/news2.jpg',
+          name: 'Ground Floor',
+          imageUrl: 'RoseeApartments/GroundFloor.png',
+          types: [
+            {
+              name: 'Type A',
+              imageUrl: 'RoseeApartments/TypeA.png',
+            },
+            {
+              name: 'Type B',
+              imageUrl: 'RoseeApartments/TypeB.png',
+            },
+            {
+              name: 'Type C',
+              imageUrl: 'RoseeApartments/TypeC.png',
+            },
+          ],
+        },
+        {
+          name: 'Typical Floor',
+          imageUrl: 'RoseeApartments/TypicalFloor.png',
+          types: [
+            {
+              name: 'Type D',
+              imageUrl: 'RoseeApartments/TypeD.png',
+            },
+            {
+              name: 'Type E',
+              imageUrl: 'RoseeApartments/TypeE.png',
+            },
+          ],
         },
       ],
     },
     {
-      name: 'The Skyline Apartments',
-      location: 'New York, NY',
-      image: '../../../assets/images/news2.jpg',
-      country: 'USA',
-      city: 'New York',
-      project: 'The Skyline Apartments',
-      type: 'Condo',
-      floorPlans: [
-        { name: 'Skyview A', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Skyview B', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
-    {
-      name: 'The Central Park Estates',
-      location: 'New York, NY',
-      image: '../../../assets/images/news2.jpg',
-      country: 'USA',
-      city: 'New York',
-      project: 'The Central Park Estates',
-      type: 'Apartment',
-      floorPlans: [
-        { name: 'Park View', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Penthouse', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
-    {
-      name: 'The Riverside Villas',
-      location: 'New York, NY',
-      image: '../../../assets/images/news2.jpg',
-      country: 'USA',
-      city: 'New York',
-      project: 'The Riverside Villas',
-      type: 'Villa',
-      floorPlans: [
-        { name: 'Villa A', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Villa B', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
-    {
-      name: 'The Downtown Condos',
-      location: 'New York, NY',
-      image: '../../../assets/images/news2.jpg',
-      country: 'USA',
-      city: 'New York',
-      project: 'The Downtown Condos',
-      type: 'Condo',
-      floorPlans: [
-        { name: 'Downtown A', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Downtown B', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
-    {
-      name: 'Palm Grove Estates',
-      location: 'Cairo, Egypt',
-      image: '../../../assets/images/news2.jpg',
+      name: 'Siléne Apartments',
+      location: 'Sheikh Zayed',
+      image: '../../../assets/images/R5.jpg',
       country: 'Egypt',
-      city: 'Cairo',
-      project: 'Palm Grove Estates',
-      type: 'Villa',
-      floorPlans: [
-        { name: 'Main Floor', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Garden View', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
-    {
-      name: 'Jazal Residences',
-      location: 'Cairo, Egypt',
-      image: '../../../assets/images/news2.jpg',
-      country: 'Egypt',
-      city: 'Cairo',
+      city: 'Giza',
       project: 'Jazal',
       type: 'Apartment',
       floorPlans: [
-        { name: 'Standard', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Deluxe', imageUrl: '../../../assets/images/news2.jpg' },
+        {
+          name: 'Ground Floor',
+          imageUrl: 'RoseeApartments/GroundFloor.png',
+          types: [
+            {
+              name: 'Type A',
+              imageUrl: 'RoseeApartments/TypeA.png',
+            },
+            {
+              name: 'Type B',
+              imageUrl: 'RoseeApartments/TypeB.png',
+            },
+            {
+              name: 'Type C',
+              imageUrl: 'RoseeApartments/TypeC.png',
+            },
+          ],
+        },
+        {
+          name: 'Typical Floor',
+          imageUrl: 'RoseeApartments/TypicalFloor.png',
+          types: [
+            {
+              name: 'Type D',
+              imageUrl: 'RoseeApartments/TypeD.png',
+            },
+            {
+              name: 'Type E',
+              imageUrl: 'RoseeApartments/TypeE.png',
+            },
+          ],
+        },
       ],
     },
-    {
-      name: 'Giza Heights',
-      location: 'Giza, Egypt',
-      image: '../../../assets/images/news2.jpg',
-      country: 'Egypt',
-      city: 'Giza',
-      project: 'Giza Heights',
-      type: 'Apartment',
-      floorPlans: [
-        { name: 'Type 1', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Type 2', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
-    {
-      name: 'Nile River View Condos',
-      location: 'Cairo, Egypt',
-      image: '../../../assets/images/news2.jpg',
-      country: 'Egypt',
-      city: 'Cairo',
-      project: 'Nile River View',
-      type: 'Condo',
-      floorPlans: [
-        { name: 'Nile A', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Nile B', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
-    {
-      name: 'The Oasis Villas',
-      location: 'Cairo, Egypt',
-      image: '../../../assets/images/news2.jpg',
-      country: 'Egypt',
-      city: 'Cairo',
-      project: 'The Oasis',
-      type: 'Villa',
-      floorPlans: [
-        { name: 'Oasis Classic', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Oasis Elite', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
-    {
-      name: 'Legacy Apartments',
-      location: 'New York, NY',
-      image: '../../../assets/images/news2.jpg',
-      country: 'USA',
-      city: 'New York',
-      project: 'Legacy Apartments',
-      type: 'Apartment',
-      floorPlans: [
-        { name: 'Legacy A', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Legacy B', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
-    {
-      name: 'The Parkside Residences',
-      location: 'New York, NY',
-      image: '../../../assets/images/news2.jpg',
-      country: 'USA',
-      city: 'New York',
-      project: 'The Parkside',
-      type: 'Apartment',
-      floorPlans: [
-        { name: 'Park A', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Park B', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
-    {
-      name: 'Cairo Central Condos',
-      location: 'Cairo, Egypt',
-      image: '../../../assets/images/news2.jpg',
-      country: 'Egypt',
-      city: 'Cairo',
-      project: 'Cairo Central',
-      type: 'Condo',
-      floorPlans: [
-        { name: 'Central A', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Central B', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
-    {
-      name: 'El Sheikh Zayed Gardens',
-      location: 'Giza, Egypt',
-      image: '../../../assets/images/news2.jpg',
-      country: 'Egypt',
-      city: 'Giza',
-      project: 'El Sheikh Zayed Gardens',
-      type: 'Villa',
-      floorPlans: [
-        { name: 'Garden A', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Garden B', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
-    {
-      name: 'Zamalek Heights',
-      location: 'Cairo, Egypt',
-      image: '../../../assets/images/news2.jpg',
-      country: 'Egypt',
-      city: 'Cairo',
-      project: 'Zamalek Heights',
-      type: 'Apartment',
-      floorPlans: [
-        { name: 'Zamalek A', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Zamalek B', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
-    {
-      name: 'Brooklyn Villas',
-      location: 'New York, NY',
-      image: '../../../assets/images/news2.jpg',
-      country: 'USA',
-      city: 'New York',
-      project: 'Brooklyn Villas',
-      type: 'Villa',
-      floorPlans: [
-        { name: 'Brooklyn A', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Brooklyn B', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
-    {
-      name: 'Manhattan Sky Condos',
-      location: 'New York, NY',
-      image: '../../../assets/images/news2.jpg',
-      country: 'USA',
-      city: 'New York',
-      project: 'Manhattan Sky',
-      type: 'Condo',
-      floorPlans: [
-        { name: 'Sky A', imageUrl: '../../../assets/images/news2.jpg' },
-        { name: 'Sky B', imageUrl: '../../../assets/images/news2.jpg' },
-      ],
-    },
+    
   ];
 
   currentPage = 1;
@@ -306,4 +158,51 @@ export class PropertiesComponent {
   nextPage() {
     if (this.currentPage < this.totalPages) this.currentPage++;
   }
+
+showClouds = true;
+  @ViewChild('overlay1') overlay1!: ElementRef;
+  @ViewChild('overlay2') overlay2!: ElementRef;
+  @ViewChild('overlayContainer', { static: true })
+  overlayContainer!: ElementRef;
+  showOverlay = true;
+  showModal = false;
+  selectedFloorPlans: any;
+  constructor(private router: Router) {}
+
+  ngAfterViewInit(): void {
+    const tl = gsap.timeline({
+      onComplete: () => {
+        this.showOverlay = false;
+      },
+    });
+    tl.to(this.overlay1.nativeElement, {
+      duration: 1,
+      x: -1000,
+      ease: 'power2.out',
+    });
+    tl.to(this.overlay2.nativeElement, {
+      duration: 1,
+      x: 1000,
+      ease: 'power2.out',
+    });
+  }
+
+  openModal(floorPlans: any) {
+    this.selectedFloorPlans = floorPlans;
+    
+    this.showModal = true;
+    console.log('here');
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+  goTo360Tour() {
+    window.open('https://legacy-estates.co/360tour.html', '_blank');
+  }
 }
+
+
+
+
+

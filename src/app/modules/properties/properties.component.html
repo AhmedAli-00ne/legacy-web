@@ -31,10 +31,13 @@
 
   <div class="grid-container">
     <div class="property-grid">
-      <div class="property-card" *ngFor="let property of filteredProperties">
-        <img [src]="property.image" alt="{{ property.name }}" />
+      <div class="property-card"  *ngFor="let property of filteredProperties">
+        <img (click)="openModal(property.floorPlans)" [src]="property.image" alt="{{ property.name }}" />
+        <h3>{{property.project}}</h3>
         <h4>{{ property.name }}</h4>
+        
         <p>{{ property.location }}</p>
+        
       </div>
     </div>
 
@@ -54,3 +57,8 @@
   </div>
   <span></span>
 </section>
+<app-unit-type-modal
+  *ngIf="showModal"
+  [floorPlans]="selectedFloorPlans"
+  (closeModal)="showModal = false"
+></app-unit-type-modal>

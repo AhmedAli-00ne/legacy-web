@@ -1,66 +1,48 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-unit-type-modal',
   templateUrl: './unit-type-modal.component.html',
   styleUrls: ['./unit-type-modal.component.scss'],
 })
-export class UnitTypeModalComponent implements OnInit {
+export class UnitTypeModalComponent {
   @Input() floorPlans: any[] = [];
   @Output() closeModal = new EventEmitter<void>();
 
-  activeCategoryIndex = 0;
-  activeTypeIndex: number | null = null;
-  dropdownOpenIndex: number | null = null;
-
-  ngOnInit(): void {
-    this.setDefault();
-  }
-
-  setDefault() {
-    const activePlan = this.floorPlans[this.activeCategoryIndex];
-    if (activePlan?.types?.length) {
-      this.activeTypeIndex = 0;
-    } else {
-      this.activeTypeIndex = null;
-    }
-  }
+  activeIndex = 0;
+  activeTypeIndex = -1;
 
   get activePlan() {
-    return this.floorPlans[this.activeCategoryIndex];
+    return this.floorPlans[this.activeIndex];
   }
 
-  get activeImageUrl() {
+  get activeImageUrl(): string {
     const plan = this.activePlan;
-    if (this.activeTypeIndex != null && plan.types) {
-      return plan.types[this.activeTypeIndex]?.imageUrl;
+    if (plan.types?.length) {
+      if (this.activeTypeIndex==-1){
+        return 'assets/images/' + plan?.imageUrl;
+
+      }
+
+      return 'assets/images/' + plan.types[this.activeTypeIndex]?.imageUrl;
+
     }
-    return plan.imageUrl;
+    return 'assets/images/' + plan?.imageUrl;
   }
 
-  get activeTypeName() {
+  get activeTypeName(): string {
     const plan = this.activePlan;
-    if (this.activeTypeIndex != null && plan.types) {
+    if (plan.types?.length) {
       return plan.types[this.activeTypeIndex]?.name;
     }
-    return plan.name;
+    return plan?.name;
   }
 
-  selectCategory(index: number) {
-    this.activeCategoryIndex = index;
-    this.setDefault();
-    this.dropdownOpenIndex = null; // close dropdown when switching
+  selectTab(index: number) {
+    this.activeIndex = index;
+    this.activeTypeIndex = -1; // reset type index when tab changes
   }
 
-  toggleDropdown(index: number) {
-    this.dropdownOpenIndex = this.dropdownOpenIndex === index ? null : index;
-  }
-
-  selectType(planIndex: number, typeIndex: number) {
-    this.activeCategoryIndex = planIndex;
-    this.activeTypeIndex = typeIndex;
-    this.dropdownOpenIndex = null;
-  }
   close() {
     this.closeModal.emit();
   }

@@ -1,49 +1,48 @@
 <div class="modal-container">
-  <div class="layout-content-container p-4">
+  <div class="layout-content-container">
     <h2 class="text-white text-[28px] font-bold text-center pb-3 pt-5">
       Floor Plans
     </h2>
 
-    <!-- Top-Level Categories -->
-    <div class="flex gap-4 px-4 pb-4 flex-wrap justify-center">
-      <div class="relative" *ngFor="let plan of floorPlans; let i = index">
-        <div
-          class="cursor-pointer text-white text-sm font-bold px-3 py-2 border rounded-full flex items-center gap-1"
-          [ngClass]="{
-            'bg-white text-black': i === activeCategoryIndex,
-            'bg-[#2c2c2c]': i !== activeCategoryIndex
-          }"
-          (click)="selectCategory(i)"
-        >
-          {{ plan.name }}
-          <span
-            class="ml-1"
-            (click)="toggleDropdown(i); $event.stopPropagation()"
-            style="cursor: pointer"
-          >
-            ▼
-          </span>
-        </div>
-
-        <!-- Dropdown Types -->
-        <div
-          class="dropdown-menu"
-          *ngIf="i === dropdownOpenIndex && plan.types"
-        >
-          <a
-            *ngFor="let type of plan.types; let j = index"
-            (click)="selectType(i, j)"
-          >
-            {{ type.name }}
-          </a>
-        </div>
-      </div>
+    <!-- Main Tabs -->
+    <div class="flex border-b border-[#4d4d4d] px-4 gap-8 pb-3 overflow-x-auto">
+      <a
+        *ngFor="let plan of floorPlans; let i = index"
+        class="flex flex-col items-center justify-center pb-[13px] pt-4 cursor-pointer"
+        [ngClass]="{
+          'border-b-[3px] border-b-white text-white': i === activeIndex,
+          'border-b-[3px] border-b-transparent text-[#adadad]':
+            i !== activeIndex
+        }"
+        (click)="selectTab(i)"
+      >
+        <p class="text-sm font-bold tracking-[0.015em]">{{ plan.name }}</p>
+      </a>
     </div>
 
+    <!-- Subtype Dropdown -->
+    <div class="flex px-4 py-3 justify-start" *ngIf="activePlan?.types?.length">
+  <select
+  class="bg-[#2a2a2a] text-white text-sm font-semibold px-4 py-3 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-[#333] transition duration-200"
+    [(ngModel)]="activeTypeIndex"
+    >
+    <option [ngValue]="-1"> Select {{activePlan?.name}} . .   </option>
+  <option 
+  *ngFor="let type of activePlan.types; let j = index"
+  [ngValue]="j"
+  >
+  {{ type.name }}
+</option>
+  </select>
+</div>
+
+
+
+
     <!-- Image Display -->
-    <div class="flex w-full grow p-4 justify-center">
+    <div class="flex w-full grow p-4">
       <div
-        class="w-full max-w-full bg-center bg-no-repeat bg-contain rounded-xl aspect-[3/2]"
+        class="w-full bg-center bg-no-repeat bg-contain rounded-xl aspect-[3/2]"
         [ngStyle]="{
           'background-image': 'url(' + activeImageUrl + ')'
         }"

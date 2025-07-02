@@ -15,6 +15,7 @@ import { PropertiesCtaComponent } from './components/properties-cta/properties-c
 import { PartnersComponent } from './components/partners/partners.component';
 import { UnitTypeModalComponent } from './components/unit-type-modal/unit-type-modal.component';
 import { CloudTransitionComponent } from './components/cloud-transition/cloud-transition.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { CloudTransitionComponent } from './components/cloud-transition/cloud-tr
     UnitTypeModalComponent,
     CloudTransitionComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   exports: [
     FooterComponent,
     LoaderComponent,
