@@ -31,3 +31,24 @@
   position: absolute;
   transform:ScaleX(-1);
 }
+.btn {
+  color: #fff;
+  
+  background-color: rgba(12, 12, 12, 0.1); // semi-transparent for glass effect
+  border-radius: 100px;
+  padding: 15px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2); // subtle border
+  backdrop-filter: blur(10px); // glass blur effect
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.5); // slightly brighter on hover
+    color: rgb(12, 12, 12);
+    box-shadow: 0 6px 24px rgba(255, 255, 255, 0.4);
+  }
+}
+
+

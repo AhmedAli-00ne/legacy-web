@@ -1,13 +1,16 @@
 .container {
   width: 100vw;
   height: 100vh;
-  background-color: #ffffff;
+  background: 
+    linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2)), // optional white overlay
+    url('../../../../assets/images/jazal-bg.JPG') center center / cover no-repeat; // 🌄 change path here
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 1rem;
 }
+
 
 .logo-image {
   width: 650px; // Adjust as needed

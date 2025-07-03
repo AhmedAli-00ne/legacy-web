@@ -23,7 +23,7 @@ export class AboutCtaComponent implements AfterViewInit {
     );
     this.initScramble(
       this.btn2.nativeElement.querySelector('span'),
-      'DOWNLOAD BROCHURE'
+      'DOWNLOAD COMPANY PROFILE'
     );
     const observer = new IntersectionObserver(
       (entries, observer) => {

@@ -77,6 +77,8 @@ export class JazalComponent implements AfterViewInit {
   showClouds = true;
   @ViewChild('overlay1') overlay1!: ElementRef;
   @ViewChild('overlay2') overlay2!: ElementRef;
+  @ViewChild('scrambleBtn1') btn1!: ElementRef;
+
   @ViewChild('overlayContainer', { static: true })
   overlayContainer!: ElementRef;
   showOverlay = true;
@@ -100,6 +102,11 @@ export class JazalComponent implements AfterViewInit {
       x: 1000,
       ease: 'power2.out',
     });
+
+    this.initScramble(
+      this.btn1.nativeElement.querySelector('span'),
+      'DOWNLOAD BROCHURE'
+    );
 
     this.startFlapping();
     this.animateBird();
@@ -149,4 +156,33 @@ gsap.to(bird, {
   ngOnDestroy(): void {
     clearInterval(this.flapInterval);
   }
+
+
+  
+  initScramble(el: HTMLElement, text: string) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*';
+    let interval: any;
+
+    const scramble = () => {
+      let iterations = 0;
+      clearInterval(interval);
+
+      interval = setInterval(() => {
+        el.innerText = el.innerText
+          .split('')
+          .map((char, i) => {
+            if (i < iterations) return text[i];
+            return chars[Math.floor(Math.random() * chars.length)];
+          })
+          .join('');
+
+        if (iterations >= text.length) clearInterval(interval);
+        iterations += 1 / 2;
+      }, 30);
+    };
+
+    el.parentElement?.addEventListener('mouseenter', scramble);
+  }
+
+
 }
