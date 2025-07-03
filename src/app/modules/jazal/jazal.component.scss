@@ -14,3 +14,20 @@
   height: 100vh;
   background-color: white;
 }
+.bird-container {
+  position: absolute;
+  top:50%;
+  transform: translate(-50%, -50%);
+  width: 128px;
+  height: 128px;
+  pointer-events: none;
+  z-index: 1000;
+  left:-8%;
+}
+
+.bird {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  transform:ScaleX(-1);
+}

@@ -1,6 +1,10 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { gsap } from 'gsap';
+import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+
+gsap.registerPlugin(MorphSVGPlugin, MotionPathPlugin);
 
 @Component({
   selector: 'app-jazal',
@@ -8,6 +12,8 @@ import { gsap } from 'gsap';
   styleUrls: ['./jazal.component.scss'],
 })
 export class JazalComponent implements AfterViewInit {
+  currentFrame = 0;
+  private flapInterval!: any;
   properties = [
     {
       name: 'Rosée Apartments',
@@ -94,6 +100,9 @@ export class JazalComponent implements AfterViewInit {
       x: 1000,
       ease: 'power2.out',
     });
+
+    this.startFlapping();
+    this.animateBird();
   }
 
   openModal(floorPlans: any) {
@@ -107,5 +116,37 @@ export class JazalComponent implements AfterViewInit {
   }
   goTo360Tour() {
     window.open('https://legacy-estates.co/360tour.html', '_blank');
+  }
+  startFlapping() {
+    this.flapInterval = setInterval(() => {
+      this.currentFrame = (this.currentFrame + 1) % 3;
+    }, 100); // ~10 FPS
+  }
+
+  animateBird() {
+    const bird = document.querySelector('.bird-container');
+
+gsap.to(bird, {
+  duration: 10,
+  repeat: -1,
+  ease: "none",
+  motionPath: {
+    path: "M 3024 222 C 2982 291 2784 465 2262 465 C 1968 465 1752 375 1554 273 C 1398 189 1236 72 786 72 C 348 75 90 249 48 306 C 90 249 348 75 786 72 C 1236 72 1398 189 1554 273 C 1752 375 1968 465 2262 465 C 2784 465 2982 291 3024 222 Z",
+    align: ".bird",
+    alignOrigin: [0.5, 0.5],
+  },
+  onUpdate: function () {
+        const progress = this['progress'](); // 👈 this returns 0–1
+        if (progress < 0.5) {
+          gsap.set(bird, { scaleX: 1 }); // Facing left
+        } else {
+          gsap.set(bird, { scaleX: -1 }); // Facing right (flipped)
+        }
+      },
+});
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.flapInterval);
   }
 }
