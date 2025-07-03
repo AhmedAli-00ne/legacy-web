@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./jazal-cta.component.scss']
 })
 export class JazalCtaComponent {
+  bgLoaded = false;
 
+  onBgImageLoad(): void {
+    this.bgLoaded = true;
+  }
 }

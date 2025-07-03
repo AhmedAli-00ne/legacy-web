@@ -1,19 +1,33 @@
 .container {
+  position: relative;
   width: 100vw;
   height: 100vh;
-  background: 
-    linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2)), // optional white overlay
-    url('../../../../assets/images/jazal-bg.JPG') center center / cover no-repeat; // 🌄 change path here
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  overflow: hidden;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+  &.bg-loaded::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2)),
+      url('../../../../assets/images/jazal-bg.JPG') center center / cover no-repeat;
+  }
 }
 
+.lazy-bg-helper {
+  display: none;
+}
 
 .logo-image {
-  width: 650px; // Adjust as needed
+  width: 650px;
   max-width: 50vw;
   height: auto;
   animation: fadeInScale 1s ease-in-out forwards;
@@ -27,7 +41,7 @@
   font-weight: 600;
   color: black;
   background-color: white;
-  border: 2px solid black; // ✅ Added border
+  border: 2px solid black;
   border-radius: 1.5rem;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   cursor: pointer;

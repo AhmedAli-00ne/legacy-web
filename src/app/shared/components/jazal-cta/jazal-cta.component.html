@@ -1,8 +1,17 @@
-<div class="container">
+<div class="container" [class.bg-loaded]="bgLoaded">
   <img
     src="../../../../assets/images/logo jazal.svg"
     alt="Legacy Estates Logo"
     class="logo-image"
   />
   <button class="action-button" routerLink="/jazal">Explore Jazal</button>
+
+  <!-- Lazy background preload helper -->
+  <img
+    class="lazy-bg-helper"
+    src="../../../../assets/images/jazal-bg.JPG"
+    alt="Background Preload"
+    loading="lazy"
+    (load)="onBgImageLoad()"
+  />
 </div>
