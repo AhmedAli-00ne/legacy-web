@@ -16,6 +16,8 @@ import { PartnersComponent } from './components/partners/partners.component';
 import { UnitTypeModalComponent } from './components/unit-type-modal/unit-type-modal.component';
 import { CloudTransitionComponent } from './components/cloud-transition/cloud-transition.component';
 import { FormsModule } from '@angular/forms';
+import { SliderComponent } from './components/slider/slider.component';
+import { SideImagesComponent } from './components/side-images/side-images.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { FormsModule } from '@angular/forms';
     PartnersComponent,
     UnitTypeModalComponent,
     CloudTransitionComponent,
+    SliderComponent,
+    SideImagesComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   exports: [
@@ -55,6 +59,8 @@ import { FormsModule } from '@angular/forms';
     PartnersComponent,
     UnitTypeModalComponent,
     CloudTransitionComponent,
+    SliderComponent,
+    SideImagesComponent
   ],
 })
 export class SharedModule {}

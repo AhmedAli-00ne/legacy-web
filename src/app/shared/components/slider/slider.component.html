@@ -1,0 +1,21 @@
+<div class="slice-slider">
+  <div
+    class="slice"
+    *ngFor="let image of images; let i = index"
+    (mouseenter)="showPreview(i, $event)"
+    (mouseleave)="hidePreview()"
+    (click)="showPreview(i, $event)"
+  >
+    <img [src]="image" />
+  </div>
+
+  <!-- Preview Box -->
+  <div
+    class="preview"
+    *ngIf="hoveredIndex !== null"
+    [style.left.px]="previewLeft"
+    [style.top.px]="previewTop"
+  >
+    <img [src]="images[hoveredIndex]" />
+  </div>
+</div>

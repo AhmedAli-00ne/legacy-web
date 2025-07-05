@@ -1,8 +1,22 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { gsap } from 'gsap';
 import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import {
+  MainGalleryItem,
+  MAIN_GALLERY_ITEMS,
+} from 'src/app/shared/data/renders-data';
+import Swiper from 'swiper';
+import { Navigation } from 'swiper/modules';
+
+Swiper.use([Navigation]);
 
 gsap.registerPlugin(MorphSVGPlugin, MotionPathPlugin);
 
@@ -14,6 +28,7 @@ gsap.registerPlugin(MorphSVGPlugin, MotionPathPlugin);
 export class JazalComponent implements AfterViewInit {
   currentFrame = 0;
   private flapInterval!: any;
+  previewItems: MainGalleryItem[] = MAIN_GALLERY_ITEMS;
   properties = [
     {
       name: 'Rosée Apartments',
@@ -60,16 +75,55 @@ export class JazalComponent implements AfterViewInit {
       name: 'Siléne Apartments',
       description:
         'Exclusive penthouses offering the ultimate in luxury and privacy. Click to view floor plans.',
-      image: '../../../assets/images/R5.jpg',
-      type: 'penthouses',
+      image: 'assets/images/SileneApartments/Cover.png',
       floorPlans: [
         {
-          name: 'Penthouse A',
-          imageUrl: 'typeaplan.png',
+          name: 'Ground Floor',
+          imageUrl: 'SileneApartments/GroundFloor.png',
+          types: [
+            {
+              name: 'Type A',
+              imageUrl: 'SileneApartments/TypeA.png',
+            },
+            {
+              name: 'Type B',
+              imageUrl: 'SileneApartments/TypeB.png',
+            },
+            {
+              name: 'Type C',
+              imageUrl: 'SileneApartments/TypeC.png',
+            },
+            {
+              name: 'Type D',
+              imageUrl: 'SileneApartments/TypeD.png',
+            },
+            {
+              name: 'Type E',
+              imageUrl: 'SileneApartments/TypeE.png',
+            },
+          ],
         },
         {
-          name: 'Penthouse B',
-          imageUrl: 'typeaplan.png',
+          name: 'Typical Floor',
+          imageUrl: 'SileneApartments/TypicalFloor.png',
+          types: [
+            {
+              name: 'Type F',
+              imageUrl: 'SileneApartments/TypeF.png',
+            },
+            {
+              name: 'Type G',
+              imageUrl: 'SileneApartments/TypeG.png',
+            },
+            {
+              name: 'Type H',
+              imageUrl: 'SileneApartments/TypeH.png',
+            },
+            {
+              name: 'Type I',
+              imageUrl: 'SileneApartments/TypeI.png',
+            },
+          ],
         },
       ],
     },
@@ -84,7 +138,7 @@ export class JazalComponent implements AfterViewInit {
   showOverlay = true;
   showModal = false;
   selectedFloorPlans: any;
-  constructor(private router: Router) {}
+  constructor(private router: Router, private renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
     const tl = gsap.timeline({
@@ -110,6 +164,7 @@ export class JazalComponent implements AfterViewInit {
 
     this.startFlapping();
     this.animateBird();
+    this.initSwiper();
   }
 
   openModal(floorPlans: any) {
@@ -127,31 +182,55 @@ export class JazalComponent implements AfterViewInit {
   startFlapping() {
     this.flapInterval = setInterval(() => {
       this.currentFrame = (this.currentFrame + 1) % 3;
-    }, 100); // ~10 FPS
+    }, 60); // ~10 FPS
   }
 
   animateBird() {
-    const bird = document.querySelector('.bird-container');
+  const container = document.querySelector('.bird-container') as HTMLElement;
+  if (!container) return;
 
-gsap.to(bird, {
-  duration: 10,
-  repeat: -1,
-  ease: "none",
-  motionPath: {
-    path: "M 3024 222 C 2982 291 2784 465 2262 465 C 1968 465 1752 375 1554 273 C 1398 189 1236 72 786 72 C 348 75 90 249 48 306 C 90 249 348 75 786 72 C 1236 72 1398 189 1554 273 C 1752 375 1968 465 2262 465 C 2784 465 2982 291 3024 222 Z",
-    align: ".bird",
-    alignOrigin: [0.5, 0.5],
-  },
-  onUpdate: function () {
-        const progress = this['progress'](); // 👈 this returns 0–1
+  let lastX = 0;
+  let lastY = 0;
+
+  gsap.to(container, {
+    duration: 15,
+    repeat: -1,
+    ease: 'none',
+    motionPath: {
+      path: 'M 3024 222 C 2982 291 2784 465 2262 465 C 1968 465 1752 375 1554 273 C 1398 189 1236 72 786 72 C 348 75 90 249 48 306 C 90 249 348 75 786 72 C 1236 72 1398 189 1554 273 C 1752 375 1968 465 2262 465 C 2784 465 2982 291 3024 222 Z',
+      align: '.bird',
+      alignOrigin: [0.5, 0.5],
+    },
+    onUpdate: function () {
+      const bounds = container.getBoundingClientRect();
+      const centerX = bounds.left + bounds.width / 2;
+      const centerY = bounds.top + bounds.height / 2;
+
+      const dx = centerX - lastX;
+      const dy = centerY - lastY;
+
+      lastX = centerX;
+      lastY = centerY;
+
+      // Calculate angle in degrees
+      const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+      // Set rotation only (no scaleX flip)
+      gsap.set(container, {
+        rotation: angle,
+      });
+      const progress = this['progress'](); // 👈 this returns 0–1
         if (progress < 0.5) {
-          gsap.set(bird, { scaleX: 1 }); // Facing left
+          gsap.set(container, { scaleY: 1 }); // Facing left
         } else {
-          gsap.set(bird, { scaleX: -1 }); // Facing right (flipped)
+          gsap.set(container, { scaleY: -1 }); // Facing right (flipped)
         }
-      },
-});
-  }
+    },
+  });
+}
+
+
+
 
   ngOnDestroy(): void {
     clearInterval(this.flapInterval);
@@ -185,4 +264,61 @@ gsap.to(bird, {
   }
 
 
+  initSwiper() {
+    new Swiper('.mySwiper', {
+      slidesPerView: 'auto',
+      spaceBetween: 16,
+      freeMode: true,
+      grabCursor: true,
+      watchSlidesProgress: true,
+      mousewheel: true, // enable scroll on desktop with mouse
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1.1,
+          spaceBetween: 8,
+        },
+        480: {
+          slidesPerView: 1.5,
+          spaceBetween: 12,
+        },
+        768: {
+          slidesPerView: 2.2,
+          spaceBetween: 14,
+        },
+        1024: {
+          slidesPerView: 3.5,
+          spaceBetween: 16,
+        },
+        1300: {
+          slidesPerView: 'auto',
+          spaceBetween: 18,
+        },
+      },
+      on: {
+        progress: function (this: Swiper) {
+          this.slides.forEach((slideEl: any) => {
+            const slideProgress = slideEl.progress;
+            const scale = 1 - Math.min(Math.abs(slideProgress * 0.1), 0.15);
+            const opacity = 1 - Math.min(Math.abs(slideProgress * 0.5), 0.5);
+            const content = slideEl.querySelector(
+              '.swiper-material-content'
+            ) as HTMLElement;
+            if (content) {
+              content.style.transform = `scale(${scale})`;
+              content.style.opacity = opacity.toString();
+            }
+          });
+        },
+        setTransition: function (this: Swiper, duration) {
+          this.slides.forEach((slide) => {
+            slide.style.transition = duration + 'ms';
+          });
+        },
+      },
+    });
+  }
 }
