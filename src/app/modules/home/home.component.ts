@@ -6,9 +6,9 @@ import {
   AfterViewInit,
   HostListener,
 } from '@angular/core';
+import Swiper from 'swiper';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { gsap } from 'gsap';
-import { ChangeDetectorRef } from '@angular/core';
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -22,19 +22,39 @@ export class HomeComponent implements AfterViewInit {
   private sectionElements: HTMLElement[] = [];
   private currentIndex = 0;
   private isScrolling = false;
+  isMobile = window.innerWidth <= 768;
 
-  constructor(private cdr: ChangeDetectorRef) {}
   ngAfterViewInit(): void {
-    this.sectionElements = this.sections.map((el) => el.nativeElement);
-    this.scrollToSection(this.currentIndex);
+    if (!this.isMobile) {
+      this.sectionElements = this.sections.map((el) => el.nativeElement);
+      this.scrollToSection(this.currentIndex);
+    } else {
+      setTimeout(() => {
+        new Swiper('.mobile-swiper', {
+          direction: 'vertical',
+          slidesPerView: 1,
+          mousewheel: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+        });
+      }, 0);
+    }
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.isMobile = window.innerWidth <= 768;
   }
 
   @HostListener('wheel', ['$event'])
   onScroll(event: WheelEvent) {
-    if (this.isScrolling) return;
-    this.isScrolling = true;
+    if (this.isMobile || this.isScrolling) return;
 
     const delta = event.deltaY;
+    this.isScrolling = true;
+
     if (delta > 0 && this.currentIndex < this.sectionElements.length - 1) {
       this.currentIndex++;
     } else if (delta < 0 && this.currentIndex > 0) {
@@ -42,7 +62,6 @@ export class HomeComponent implements AfterViewInit {
     }
 
     this.scrollToSection(this.currentIndex);
-
     setTimeout(() => (this.isScrolling = false), 800);
   }
 

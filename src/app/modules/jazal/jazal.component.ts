@@ -29,6 +29,64 @@ export class JazalComponent implements AfterViewInit {
   currentFrame = 0;
   private flapInterval!: any;
   previewItems: MainGalleryItem[] = MAIN_GALLERY_ITEMS;
+  amenities = [
+    {
+      title: 'Indoor & Outdoor Gyms',
+      icon: '🏋️‍♂️',
+    },
+    {
+      title: 'Yoga & Meditation Retreats',
+      icon: '🧘‍♀️',
+    },
+    {
+      title: 'Jogging Track',
+      icon: '🏃‍♂️',
+    },
+    {
+      title: 'Indoor & Outdoor Swimming Pools',
+      icon: '🏊‍♀️',
+    },
+    {
+      title: 'Barbecue Areas',
+      icon: '🍖',
+    },
+    {
+      title: 'Co-working Spaces',
+      icon: '💼',
+    },
+    {
+      title: 'Serviced Studios',
+      icon: '🏢',
+    },
+    {
+      title: 'Clubhouse and Venue',
+      icon: '🏛️',
+    },
+    {
+      title: 'Mosque',
+      icon: '🕌',
+    },
+    {
+      title: "Daycare & Kids' Area",
+      icon: '🧒',
+    },
+    {
+      title: 'Commercial Strip Mall',
+      icon: '🏬',
+    },
+    {
+      title: '24/7 A-Class Security',
+      icon: '🛡️',
+    },
+    {
+      title: 'Underground Parking',
+      icon: '🚗',
+    },
+    {
+      title: 'Landscaped Gardens',
+      icon: '🌳',
+    },
+  ];
   properties = [
     {
       name: 'Rosée Apartments',
@@ -148,12 +206,12 @@ export class JazalComponent implements AfterViewInit {
     });
     tl.to(this.overlay1.nativeElement, {
       duration: 1,
-      x: -1000,
+      x: -1800,
       ease: 'power2.out',
     });
     tl.to(this.overlay2.nativeElement, {
       duration: 1,
-      x: 1000,
+      x: 1800,
       ease: 'power2.out',
     });
 
@@ -186,58 +244,53 @@ export class JazalComponent implements AfterViewInit {
   }
 
   animateBird() {
-  const container = document.querySelector('.bird-container') as HTMLElement;
-  if (!container) return;
+    const container = document.querySelector('.bird-container') as HTMLElement;
+    if (!container) return;
 
-  let lastX = 0;
-  let lastY = 0;
+    let lastX = 0;
+    let lastY = 0;
 
-  gsap.to(container, {
-    duration: 15,
-    repeat: -1,
-    ease: 'none',
-    motionPath: {
-      path: 'M 3024 222 C 2982 291 2784 465 2262 465 C 1968 465 1752 375 1554 273 C 1398 189 1236 72 786 72 C 348 75 90 249 48 306 C 90 249 348 75 786 72 C 1236 72 1398 189 1554 273 C 1752 375 1968 465 2262 465 C 2784 465 2982 291 3024 222 Z',
-      align: '.bird',
-      alignOrigin: [0.5, 0.5],
-    },
-    onUpdate: function () {
-      const bounds = container.getBoundingClientRect();
-      const centerX = bounds.left + bounds.width / 2;
-      const centerY = bounds.top + bounds.height / 2;
+    gsap.to(container, {
+      duration: 15,
+      repeat: -1,
+      ease: 'none',
+      motionPath: {
+        path: 'M 3024 222 C 2982 291 2784 465 2262 465 C 1968 465 1752 375 1554 273 C 1398 189 1236 72 786 72 C 348 75 90 249 48 306 C 90 249 348 75 786 72 C 1236 72 1398 189 1554 273 C 1752 375 1968 465 2262 465 C 2784 465 2982 291 3024 222 Z',
+        align: '.bird',
+        alignOrigin: [0.5, 0.5],
+      },
+      onUpdate: function () {
+        const bounds = container.getBoundingClientRect();
+        const centerX = bounds.left + bounds.width / 2;
+        const centerY = bounds.top + bounds.height / 2;
 
-      const dx = centerX - lastX;
-      const dy = centerY - lastY;
+        const dx = centerX - lastX;
+        const dy = centerY - lastY;
 
-      lastX = centerX;
-      lastY = centerY;
+        lastX = centerX;
+        lastY = centerY;
 
-      // Calculate angle in degrees
-      const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+        // Calculate angle in degrees
+        const angle = Math.atan2(dy, dx) * (180 / Math.PI);
 
-      // Set rotation only (no scaleX flip)
-      gsap.set(container, {
-        rotation: angle,
-      });
-      const progress = this['progress'](); // 👈 this returns 0–1
+        // Set rotation only (no scaleX flip)
+        gsap.set(container, {
+          rotation: angle,
+        });
+        const progress = this['progress'](); // 👈 this returns 0–1
         if (progress < 0.5) {
           gsap.set(container, { scaleY: 1 }); // Facing left
         } else {
           gsap.set(container, { scaleY: -1 }); // Facing right (flipped)
         }
-    },
-  });
-}
-
-
-
+      },
+    });
+  }
 
   ngOnDestroy(): void {
     clearInterval(this.flapInterval);
   }
 
-
-  
   initScramble(el: HTMLElement, text: string) {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*';
     let interval: any;
@@ -262,7 +315,6 @@ export class JazalComponent implements AfterViewInit {
 
     el.parentElement?.addEventListener('mouseenter', scramble);
   }
-
 
   initSwiper() {
     new Swiper('.mySwiper', {

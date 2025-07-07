@@ -84,3 +84,44 @@
 .project-column.past {
   background-image: url("../../../../assets/images/Pexels-1024x682.webp");
 }
+@media (max-width: 768px) {
+  .projects-diagonal {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .project-column {
+    clip-path: none;
+    margin-left: 0 !important;
+    height: auto;
+    width: 100%;
+    filter: grayscale(0%);
+    flex: none;
+    padding: 3rem 1.5rem;
+    background-blend-mode: darken;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .project-column:hover {
+    flex: none;
+    z-index: 0;
+  }
+
+  .project-column .content {
+    text-align: left;
+    padding: 1rem;
+    h2 {
+      font-size: 1.75rem;
+    }
+    h3 {
+      font-size: 1.2rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+    .btn {
+      width: 100%;
+      font-size: 1rem;
+    }
+  }
+}

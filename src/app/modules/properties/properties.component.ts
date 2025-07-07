@@ -9,10 +9,10 @@ import { gsap } from 'gsap';
   styleUrls: ['./properties.component.scss'],
 })
 export class PropertiesComponent {
-  countries = ['Egypt', 'USA'];
-  cities = ['Cairo', 'New York','Giza'];
-  projects = ['Jazal', 'The Metropolitan Lofts'];
-  propertyTypes = ['Apartment', 'Villa', 'Condo'];
+  countries = ['Egypt'];
+  cities = ['Giza'];
+  projects = ['Jazal'];
+  propertyTypes = ['Apartment'];
 
   selectedCountry = '';
   selectedCity = '';
@@ -106,7 +106,6 @@ export class PropertiesComponent {
         },
       ],
     },
-    
   ];
 
   currentPage = 1;
@@ -159,7 +158,7 @@ export class PropertiesComponent {
     if (this.currentPage < this.totalPages) this.currentPage++;
   }
 
-showClouds = true;
+  showClouds = true;
   @ViewChild('overlay1') overlay1!: ElementRef;
   @ViewChild('overlay2') overlay2!: ElementRef;
   @ViewChild('overlayContainer', { static: true })
@@ -189,7 +188,7 @@ showClouds = true;
 
   openModal(floorPlans: any) {
     this.selectedFloorPlans = floorPlans;
-    
+
     this.showModal = true;
     console.log('here');
   }
@@ -201,8 +200,3 @@ showClouds = true;
     window.open('https://legacy-estates.co/360tour.html', '_blank');
   }
 }
-
-
-
-
-

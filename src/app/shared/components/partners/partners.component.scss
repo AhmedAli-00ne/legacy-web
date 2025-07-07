@@ -15,7 +15,7 @@
     position: relative;
 
     &::after {
-      content: '';
+      content: "";
       width: 50px;
       height: 4px;
       background: white;
@@ -33,24 +33,23 @@
   }
 
   .partner-card {
-  background: white;
-  width: 220px;
-  height: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  transition: box-shadow 0.3s ease;
+    background: white;
+    width: 220px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: box-shadow 0.3s ease;
 
-  img {
-    max-width: 80%;
-    max-height: 80%;
+    img {
+      max-width: 80%;
+      max-height: 80%;
+    }
   }
-}
-
 
   .learn-more {
     background: transparent;
@@ -60,7 +59,7 @@
     font-size: 16px;
     cursor: pointer;
     transition: 0.3s;
-    
+
     &:hover {
       background: rgb(255, 255, 255);
       color: #121212;
@@ -68,15 +67,59 @@
   }
 }
 
-
-.one{
+.one {
   top: 0;
   height: 50%;
 }
-.two{
+.two {
   left: 0;
   padding: 4%;
   width: 100%;
-  top:50%;
+  top: 50%;
   min-height: 1300px;
+}
+@media (max-width: 768px) {
+  .partners-section {
+    padding: 3rem 1rem;
+    height: auto; // ✅ allow full scroll height on mobile
+    padding-top: 5rem;
+    height: 100vh;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+
+    &::after {
+      margin-top: 0.5rem;
+    }
+  }
+
+  .partners-wrapper {
+    gap: 1.5rem;
+  }
+
+  .partner-card {
+    width: 140px !important;
+    height: 100px !important;
+
+    img {
+      max-width: 70%;
+      max-height: 70%;
+    }
+  }
+
+  .learn-more {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .one {
+    height: auto; // ✅ instead of 50%
+  }
+
+  .two {
+    padding: 2rem 0;
+    min-height: auto; // ✅ remove fixed 1300px height
+  }
 }

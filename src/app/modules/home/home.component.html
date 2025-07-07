@@ -1,10 +1,19 @@
-<div class="scroll-container">
+<div class="scroll-container swiper-container" *ngIf="!isMobile">
   <section class="section" #sections>
     <app-hero></app-hero>
   </section>
-  <section class="section" #sections style="  background: 
-    linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2)),
-    url('../../../../assets/images/jazal-bg.JPG') center center / cover no-repeat;">
+  <section
+    class="section"
+    #sections
+    style="
+      background: linear-gradient(
+          rgba(255, 255, 255, 0.1),
+          rgba(255, 255, 255, 0.2)
+        ),
+        url('../../../../assets/images/jazal-bg.JPG') center center / cover
+          no-repeat;
+    "
+  >
     <app-jazal-cta></app-jazal-cta>
   </section>
   <section class="section" #sections>
@@ -16,11 +25,37 @@
   <section class="section" #sections>
     <app-services></app-services>
   </section>
-
   <section class="section" #sections>
     <app-properties-cta></app-properties-cta>
   </section>
   <section class="section" #sections>
     <app-partners></app-partners>
   </section>
+</div>
+
+<!-- Mobile Swiper (visible only on small screens) -->
+<div class="swiper mobile-swiper min-h-screen" *ngIf="isMobile">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide min-h-screen">
+      <app-hero></app-hero>
+    </div>
+    <div class="swiper-slide min-h-screen">
+      <app-jazal-cta></app-jazal-cta>
+    </div>
+    <div class="swiper-slide min-h-screen">
+      <app-about-cta></app-about-cta>
+    </div>
+    <div class="swiper-slide min-h-screen">
+      <app-projects></app-projects>
+    </div>
+    <div class="swiper-slide min-h-screen">
+      <app-services></app-services>
+    </div>
+    <div class="swiper-slide min-h-screen">
+      <app-properties-cta></app-properties-cta>
+    </div>
+    <div class="swiper-slide min-h-screen">
+      <app-partners></app-partners>
+    </div>
+  </div>
 </div>
