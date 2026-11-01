@@ -221,8 +221,6 @@ Large visual assets were handled carefully because high-resolution images can si
 
 ---
 
-## 🚀 Getting Started
-
 ### Prerequisites
 
 Make sure you have the following installed:
@@ -312,49 +310,9 @@ The project was developed with emphasis on:
 
 ---
 
-## 📸 Screenshots
-
-### Home / Hero
-
-> Add a screenshot of the homepage here.
-
-```markdown
-![Homepage](screenshots/homepage.png)
-```
-
-### Properties
-
-> Add a screenshot of the properties section here.
-
-```markdown
-![Properties](screenshots/properties.png)
-```
-
-### Services
-
-> Add a screenshot of the services section here.
-
-```markdown
-![Services](screenshots/services.png)
-```
-
-### Navigation
-
-> Add a screenshot or GIF showing the animated navigation menu here.
-
-```markdown
-![Navigation](screenshots/navigation.gif)
-```
 
 ---
 
-## 🎥 Demo
-
-If a live deployment or project demonstration becomes available, add it here:
-
-**Live Website:** `Coming Soon`
-
-**Project Demo:** `Coming Soon`
 
 ---
 
